@@ -8,17 +8,21 @@
 
 import React, {Fragment} from 'react';
 import {
+  Dimensions,
   StyleSheet,
   View,
   Text,
 } from 'react-native';
 import Router from './App/routes/Router';
+import Carte from './App/views/Carte';
+
+const {width, height} = Dimensions.get('window');
 
 const App = () => {
   return (
     <Fragment>
-      <View>
-        <Router/>
+      <View style={{width:width, height:height}}>
+        <Carte/>
       </View>
     </Fragment>
   );
