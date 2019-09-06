@@ -1125,3 +1125,5 @@ const DATA = [
     "description": "Edition de livres.Depuis plus de quarante ans, \nles éditions Ouest-France s’imposent comme l’éditeur des régions.\nLoin de se limiter au grand ouest, \nelles participent activement à la mise en valeur\n du patrimoine culturel, local, régional et national.\n Du tourisme à l’histoire en passant par les arts,\n la peinture mais aussi les thématiques pratiques,\n 150 nouveautés sont publiées par an.\n Presque une trentaine de beaux-livres viennent enrichir\n chaque année un catalogue de 1800 titres et de\n 2000 auteurs tous spécialistes dans leurs domaines .\nRigueur de l’information et qualité de l’iconographie."
   }
  ]
+
+ export default DATA;

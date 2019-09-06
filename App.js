@@ -13,8 +13,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import Router from './App/routes/Router';
-import Carte from './App/views/Carte';
+import Main from './App/views/Main';
 
 const {width, height} = Dimensions.get('window');
 
@@ -22,7 +21,7 @@ const App = () => {
   return (
     <Fragment>
       <View style={{width:width, height:height}}>
-        <Carte/>
+        <Main/>
       </View>
     </Fragment>
   );

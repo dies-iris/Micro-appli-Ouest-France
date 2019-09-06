@@ -1,7 +1,9 @@
 import MapboxGL from "@react-native-mapbox-gl/maps";
 import React, {Component} from 'react';
 import { Text, StyleSheet, View, Dimensions} from "react-native";
-import Bubble from '../components/Bubble';
+import Bubble from './Bubble';
+import DATA from "../consts/data";
+import Marker from "./Marker";
 
 MapboxGL.setAccessToken("pk.eyJ1IjoiZGlzYyIsImEiOiJjazA3dTI5czQxaGdqM25wbmo1ZXU2cTlyIn0.W7a8ZQ6tiaYnEUpzFh5fGg");
 
@@ -67,13 +69,19 @@ export default class Carte extends Component {
           ref={c => (this._map = c)}
           onPress={this.onPress}
           style={{flex: 1}}
+          zoomEnabled={true}
         >
           <MapboxGL.Camera
-            zoomLevel={9}
-            centerCoordinate={[-73.970895, 40.723279]}
+            zoomLevel={5}
+            centerCoordinate={[-0.556417, 47.475031]}
           />
         </MapboxGL.MapView>
-        <MapboxGL.SymbolLayer  />
+        {/* {
+          DATA.map((adress,i) => 
+          <Marker key={i} coordinates={[adress.latitude, adress.longitude]} />
+          )
+        } */}
+        <Marker/>
         <Bubble>{this.renderPointInView()}</Bubble>
       </View>
     );
