@@ -3,20 +3,40 @@ import {View, Text, TouchableHighlight, StyleSheet, Dimensions} from 'react-nati
 import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
+import Filtres from '../components/Filtres';
 
 export default class Main extends Component {
     constructor(props){
         super(props);
         this.state = {
-            carte : false
+            carte : false,
+            adresses : DATA
         }
         this.changeContext = this.changeContext.bind(this);
+        this.filterByGroup = this.filterByGroup.bind(this);
+        this.filterByActivity = this.filterByActivity.bind(this);
     }
 
     changeContext(){
         this.setState(prevState => ({
             carte: !prevState.carte
         }))
+    }
+
+    filterByGroup(societe){
+        let adr = DATA.filter(adress => adress.groupeparent === societe);
+        this.setState(prevState => ({
+            adresses : adr
+        }));
+        console.warn(societe);
+    }
+
+    filterByActivity(activite){
+        let adr = this.state.adresses.filter(adress => adress.typeBatiment == activite);
+        this.setState(prevState => ({
+            adresses : adr
+        }));
+        console.warn(activite);
     }
 
     render(){
@@ -32,14 +52,15 @@ export default class Main extends Component {
                     <Text>Liste</Text>
                     </TouchableHighlight>
                 </View>
+                <Filtres filterByGroup={this.filterByGroup} filterByActivity={this.filterByActivity}/>
                 <View style={styles.container}>
                 {
                     this.state.carte ?
                     
-                    <Carte/>
+                    null
                     
                     :
-                    <Liste adresses={DATA} style={{flex:1}}/>
+                    <Liste adresses={this.state.adresses} style={{flex:1}}/>
                 }
                 </View>
             </View>
