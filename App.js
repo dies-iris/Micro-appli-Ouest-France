@@ -15,13 +15,15 @@ import {
 } from 'react-native';
 import Main from './App/views/Main';
 import Prensent from './App/components/Tab';
+import DATA from './App/consts/data'
+
 const {width, height} = Dimensions.get('window');
 
 const App = () => {
   return (
     <Fragment>
       <View style={{width:width, height:height}}>
-        <Prensent/>
+        <Prensent adress={DATA[0]} />
       </View>
     </Fragment>
   );
