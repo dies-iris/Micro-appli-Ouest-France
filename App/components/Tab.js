@@ -33,7 +33,7 @@ export default class Present extends Component {
                             <View key={i}>
                                 <Text >{adress.prenom}</Text>
                                 <Text >{adress.nom}</Text>
-                                <Text >{adress.}</Text>
+                                {/* <Text >{adress.}</Text> */}
                             </View>
                         )})
                     }    

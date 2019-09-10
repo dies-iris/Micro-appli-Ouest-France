@@ -14,14 +14,14 @@ import {
   Text,
 } from 'react-native';
 import Main from './App/views/Main';
-
+import Prensent from './App/components/Tab';
 const {width, height} = Dimensions.get('window');
 
 const App = () => {
   return (
     <Fragment>
       <View style={{width:width, height:height}}>
-        <Main/>
+        <Prensent/>
       </View>
     </Fragment>
   );

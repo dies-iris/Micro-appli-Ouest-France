@@ -4,7 +4,7 @@ import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
 import Filtres from '../components/Filtres';
-import Prensent from '../components/Tab';
+
 
 export default class Main extends Component {
     constructor(props){
