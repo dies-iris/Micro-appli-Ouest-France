@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import { Text, StyleSheet, View, Dimensions} from "react-native";
 import Bubble from './Bubble';
 import DATA from "../consts/data";
-import Marker from "./Marker";
 
 MapboxGL.setAccessToken("pk.eyJ1IjoiZGlzYyIsImEiOiJjazA3dTI5czQxaGdqM25wbmo1ZXU2cTlyIn0.W7a8ZQ6tiaYnEUpzFh5fGg");
 
@@ -76,12 +75,7 @@ export default class Carte extends Component {
             centerCoordinate={[-0.556417, 47.475031]}
           />
         </MapboxGL.MapView>
-        {/* {
-          DATA.map((adress,i) => 
-          <Marker key={i} coordinates={[adress.latitude, adress.longitude]} />
-          )
-        } */}
-        <Marker/>
+        
         <Bubble>{this.renderPointInView()}</Bubble>
       </View>
     );

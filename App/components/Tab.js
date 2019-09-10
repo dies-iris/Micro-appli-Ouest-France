@@ -1,22 +1,61 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import Tab1 from './tabOne';
-import Tab2 from './tabTwo';
-import Tab3 from './tabThree';
-export default class TabsExample extends Component {
+import DATA from '../consts/data';
+
+export default class Present extends Component {
   render() {
     return (
       <Container>
         <Header hasTabs />
         <Tabs>
-          <Tab heading="Tab1">
-            <Tab1 />
+          <Tab heading="Infos">
+            <View >
+                    {
+                        DATA.map((adress, i) =>{
+                            return (
+                            <View key={i}>
+                                <Text >{adress.groupeparent}</Text>
+                                <Text >{adress.societe}</Text>
+                                <Text >{adress.typeBatiment}</Text>
+                                <Text >{adress.description}</Text>
+                            </View>
+                        )})
+                    }    
+                </View>
+            
           </Tab>
-          <Tab heading="Tab2">
-            <Tab2 />
+          <Tab heading="Coordonées Responsables">
+            
+                <View>
+                    {
+                        DATA.map((adress, i) =>{
+                            return (
+                            <View key={i}>
+                                <Text >{adress.prenom}</Text>
+                                <Text >{adress.nom}</Text>
+                                <Text >{adress.}</Text>
+                            </View>
+                        )})
+                    }    
+                </View>
+            
           </Tab>
-          <Tab heading="Tab3">
-            <Tab3 />
+          <Tab heading="Coordonées Entreprise">
+            
+            <View>
+                    {
+                        DATA.map((adress, i) =>{
+                            return (
+                            <View key={i}>
+                                <Text >{adress.tel}</Text>
+                                <Text >{adress.ville}</Text>
+                                <Text >{adress.rue}</Text>
+                                <Text >{adress.societe}</Text>
+                            </View>
+                        )})
+                    }    
+                </View>
+            
           </Tab>
         </Tabs>
       </Container>
