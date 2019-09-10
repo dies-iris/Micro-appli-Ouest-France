@@ -12,6 +12,7 @@
     "@vtex/react-csv-parse": "^3.0.2",
     "csv-parser": "^2.3.0",
     "csvtojson": "^2.0.10",
+    "eslint-plugin-react": "^7.12.4",
     "fs": "0.0.1-security",
     "native-base": "^2.13.7",
     "react": "^16.8.6",
