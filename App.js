@@ -14,6 +14,8 @@ import {
   Text,
 } from 'react-native';
 import Main from './App/views/Main';
+import Carte from './App/components/Carte';
+import DATA from './App/consts/data';
 
 const {width, height} = Dimensions.get('window');
 
@@ -21,7 +23,8 @@ const App = () => {
   return (
     <Fragment>
       <View style={{width:width, height:height}}>
-        <Main/>
+        <Carte markers={DATA}/>
+        {/* <Main/> */}
       </View>
     </Fragment>
   );
