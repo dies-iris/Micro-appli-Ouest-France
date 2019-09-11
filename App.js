@@ -17,14 +17,14 @@ import Main from './App/views/Main';
 import Carte from './App/components/Carte';
 import DATA from './App/consts/data';
 
-const {width, height} = Dimensions.get('window');
 
 const App = () => {
+
   return (
     <Fragment>
-      <View style={{width:width, height:height}}>
-        <Carte markers={DATA}/>
-        {/* <Main/> */}
+      <View style={{flex:1}}>
+        
+        <Main/>
       </View>
     </Fragment>
   );

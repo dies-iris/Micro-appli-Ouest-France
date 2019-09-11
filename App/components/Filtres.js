@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-import { Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import { Col, Grid, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
+import {Animated, Easing, View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import DATA from '../consts/data';
 
 export default class Filtres extends Component {
     constructor(props){
         super(props);
         this.state = {
-            societe : null,
-            filterByGroup : null
+            selectedSociete : null,
+            selectedActivity : null,
+            drawerOpen : true
         }
+        this.rotateValue = new Animated.Value(0);
     }
 
     onlyUnique(value, index, self) { 
@@ -18,60 +20,126 @@ export default class Filtres extends Component {
 
     filterByGroup(groupe){
         this.setState({
-            societe : groupe
+            selectedSociete : groupe
         })
-        this.props.filterByGroup(groupe)
+        this.props.filterByGroup(groupe);
+    }
+    
+    filterByActivity(activity){
+        this.setState({
+            selectedActivity : activity
+        })
+        this.props.filterByActivity(activity);
+    }
+
+    reset(){
+        this.setState({
+            selectedSociete : null,
+            selectedActivity : null
+        });
+        this.props.reset();
+    }
+
+    toggleDrawer(){
+        if(this.state.drawerOpen){
+            this.props.openDrawer();
+            this.setState({
+                drawerOpen: false
+            })
+        } else {
+            this.props.closeDrawer();
+            this.setState({
+                drawerOpen: true
+            })
+        }
     }
 
     render(){
+        const { icon, onPress, data } = this.props;
+
+      let rotation = this.rotateValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["0deg", "180deg"] // degree of rotation
+      });
+      let transformStyle = { transform: [{ rotate: rotation }] };
+
         const filiales = DATA.map(adress => adress.groupeparent);
         const uniqueFilial = filiales.filter(this.onlyUnique);
         const activites = DATA.map(adress => adress.typeBatiment);
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
-            <View style={styles.main}>
-                <View style={styles.fragment}>
+            <Container>
+                <Grid>
+                    <Col style={{width:40}}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
+                        <Animated.View style={transformStyle}>
+                                <Icon type="FontAwesome" name="angle-left" 
+                                onPress={() => {
+                                    Animated.timing(this.rotateValue, {
+                                      toValue: 0,
+                                      duration: 350,
+                                      easing: Easing.linear
+                                    }).start();
+                                  }}
+                                  />
+                                  </Animated.View>
+                        </TouchableOpacity>
+                    </Col>
+                <Col>
+                    <Header>
                     <Body>
-                        <Text>Filtres</Text>
-                    </Body>
-                    
-                    <Right>
-                        <Button transparent>
-                        <Icon type="AntDesign" name="close" onPress={() => this.props.closeDrawer()}/>
-                </Button>
-                    </Right>
-                    
-                </View>
-                <Text>Groupe</Text>
-                <View style={styles.fragment}>
-                    {
-                        uniqueFilial.map((groupe, i) =>
-                            <Button
-                            ref={(ref) => { this.button[i] = ref; }} 
-                            small 
-                            rounded 
-                            light
-                            key={i} 
-                            style={styles.tags} 
-                            onPress={() => this.filterByGroup(groupe)}>
-                                <Text>{groupe}</Text>
-                            </Button> 
-                            )
-                    }
-                </View>
-                <Text>Activité</Text>
-                <View style={styles.fragment}>
-                    {
-                        uniqueActivite.map((activite, i) =>
-                            <Button small rounded warning key={i} style={styles.tags} onPress={() => this.props.filterByActivity(activite)}>
-                                <Text>{activite}</Text>
-                            </Button>
-                        )
-                    }
-                </View>
-
-            </View>
-
+                        
+                            <Text>Filtres</Text>
+                        </Body>
+                        
+                        <Right>
+                            <Button transparent>
+                            <Icon type="AntDesign" name="close" onPress={() => this.props.closeDrawer()}/>
+                    </Button>
+                        </Right>
+                        </Header>
+                    <Content style={styles.main}>
+                        <Text>Groupe</Text>
+                        <View style={styles.fragment}>
+                            {
+                                uniqueFilial.map((groupe, i) =>
+                                    <Button
+                                    small 
+                                    rounded 
+                                    primary={this.state.selectedSociete === groupe ? false : true }
+                                    success={this.state.selectedSociete === groupe ? true : false }
+                                    key={i} 
+                                    style={styles.tags} 
+                                    onPress={(e) => this.filterByGroup(groupe)}>
+                                        <Text>{groupe}</Text>
+                                    </Button> 
+                                    )
+                            }
+                        </View>
+                        <Text>Activité</Text>
+                        <View style={styles.fragment}>
+                            {
+                                uniqueActivite.map((activite, i) =>
+                                    <Button 
+                                    small 
+                                    rounded
+                                    warning={this.state.selectedActivity === activite ? false : true }
+                                    success={this.state.selectedActivity === activite ? true : false } 
+                                    key={i} 
+                                    style={styles.tags} 
+                                    onPress={() => this.filterByActivity(activite)}>
+                                        <Text>{activite}</Text>
+                                    </Button>
+                                )
+                            }
+                        </View>
+                        <Button block success style={styles.tags}  onPress={() => this.props.closeDrawer()}><Text>Valider</Text></Button>
+                        <Button transparent danger style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
+                        
+                    </Content>
+                </Col>
+                </Grid>
+            </Container>
         )
     }
 }
@@ -79,13 +147,16 @@ export default class Filtres extends Component {
 const styles=StyleSheet.create({
     main : {
         flex: 1,
-        backgroundColor: "#F0F0F0"
+        backgroundColor: "#F0F0F0",
+        paddingHorizontal: 20,
+        paddingVertical : 10
     },
 
     fragment : {
         flexDirection : 'row', 
-        flexWrap : "wrap"
-        
+        flexWrap : "wrap",
+        marginBottom : 10,
+        marginTop : 10,
     },
 
     tags : {

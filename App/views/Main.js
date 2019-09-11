@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
-import { Drawer, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
+import { Item, Input, Drawer, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
 import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
@@ -17,6 +17,7 @@ export default class Main extends Component {
         this.hideMap = this.hideMap.bind(this);
         this.filterByGroup = this.filterByGroup.bind(this);
         this.filterByActivity = this.filterByActivity.bind(this);
+        
     }
 
     showMap(){
@@ -44,7 +45,6 @@ export default class Main extends Component {
         this.setState(prevState => ({
             adresses : adr
         }));
-        console.warn(societe);
     }
 
     filterByActivity(activite){
@@ -52,13 +52,18 @@ export default class Main extends Component {
         this.setState(prevState => ({
             adresses : adr
         }));
-        console.warn(activite);
+    }
+
+    reset(){
+        this.setState({
+            adresses : DATA
+        })
     }
 
     render(){
         return(
             <Container>
-                <Header hasSegment>
+                <Header searchBar rounded hasSegment>
                     <Left>
                         <Button transparent>
                         <Icon name="arrow-back" />
@@ -68,8 +73,13 @@ export default class Main extends Component {
                         <Title>SIPA Ouest-France</Title>
                     </Body>
                     <Right>
+                    <Item>
+                            <Icon name="ios-search" />
+                            <Input placeholder="Search" />
+                            <Icon name="ios-people" />
+                        </Item>
                         <Button transparent>
-                        <Icon type="FontAwesome" name="filter" onPress={this.openDrawer.bind(this)}/>
+                            <Text>Rechercher</Text>
                         </Button>
                     </Right>
                 </Header>
@@ -82,14 +92,27 @@ export default class Main extends Component {
                     </Button>
                 </Segment> 
                 <Drawer 
+                    side="right"
+                    openDrawerOffset={0.5}
+                    closedDrawerOffset={40}
+                    open={true}
+                    tapToClose={true}
+                    onOpenStart={() => {}}
                     ref={(ref) => { this.drawer = ref; }} 
-                    content={<Filtres filterByGroup={this.filterByGroup} filterByActivity={this.filterByActivity} closeDrawer={this.closeDrawer.bind(this)}/>} 
+                    content={
+                            <Filtres 
+                            filterByGroup={this.filterByGroup} 
+                            filterByActivity={this.filterByActivity} 
+                            openDrawer={this.openDrawer.bind(this)} 
+                            closeDrawer={this.closeDrawer.bind(this)} 
+                            reset={this.reset.bind(this)}/>
+                        } 
                     onClose={() => this.closeDrawer()} >
-                <Content padder>
+                <Content padder contentContainerStyle={{flex:1}}>
                     {
                     this.state.carte ?
                     
-                    null
+                    <Carte markers={this.state.adresses}/>
                      
                     :
                     <Liste adresses={this.state.adresses} style={{flex:1}}/>
