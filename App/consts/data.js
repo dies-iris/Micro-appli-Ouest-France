@@ -1,163 +1,175 @@
 const DATA = [
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "31 rue Larcher ",
     "cp": 14400,
     "ville": "Bayeux",
-    "latitude": "49.2757",
-    "longitude": "-0.701957",
+    "latitude": 49.2757,
+    "longitude": -0.701957,
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
+    "photoBatiment": "",
+    "logo": '..\images\ouest_france.png',
+    "groupeParent": "Ouest-France",
     "nom": "BALLARD",
     "prenom": "Guillaume",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "14 place Pierre Bouchard",
     "cp": 14000,
     "ville": "Caen",
-    "latitude": "49.1835",
-    "longitude": "-0.36422",
+    "latitude": 49.1835,
+    "longitude": -0.36422,
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
+    "photoBatiment": "",
     "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "logo": ".\images\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BALLARD",
+    "prenom": "Guillaume"?
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    
+    "societe": "Ouest France",
     "rue": "3, rue de la Trinité",
     "cp": 14700,
     "ville": "Falaise",
-    "latitude": "48.9182",
-    "longitude": "-0.2119",
+    "latitude": 48.9182,
+    "longitude": -0.2119,
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BALLARD",
+    "prenom": "Guillaume",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "27 rue Pont Mortain",
-    "cp": 14100,
+    "cp": "14100",
     "ville": "Lisieux",
     "latitude": "49.1439556",
     "longitude": "0.2266404",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BALLARD",
+    "prenom": "Guillaume",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "16 Bd Fernand Moureaux",
-    "cp": 14360,
+    "cp": "14360",
     "ville": "Trouville",
     "latitude": "49.3640512",
     "longitude": "0.0831731",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BALLARD",
+    "prenom": "Guillaume",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "24 rue Chaussée",
-    "cp": 14500,
+    "cp": "14500",
     "ville": "Vire",
     "latitude": "48.8377716",
     "longitude": "-0.8903022",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BALLARD",
+    "prenom": "Guillaume",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "9, place Duclos",
-    "cp": 22100,
+    "cp": "22100",
     "ville": "Dinan",
     "latitude": "48.453731",
     "longitude": "-2.047911",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
     "nom": "BIGORGNE",
     "prenom": "Joël",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "4 rue de la Pompe",
     "cp": 22200,
     "ville": "Guingamp",
     "latitude": "48.5634349",
     "longitude": "-3.1518538",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BIGORGNE",
+    "prenom": "Joël",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "19 rue du Val ",
     "cp": 22400,
     "ville": "Lamballe",
     "latitude": "48.4693025",
     "longitude": "-2.5139728",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BIGORGNE",
+    "prenom": "Joël",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "1 rue de Viarmes",
     "cp": 22300,
     "ville": "Lannion",
     "latitude": "48.734702",
     "longitude": "-3.463987",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
-    "groupeparent": "Ouest-France",
-    "nom": "\"",
-    "prenom": "\"",
+    "photoBatiment": "",
+    "logo": "app\\PorjetDISC1920\\App\\images\\ouest_france.png",
+    "groupeParent": "Ouest-France",
+    "nom": "BIGORGNE",
+    "prenom": "Joël",
     "photo": "",
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "6 rue Saint-Joseph",
     "cp": 22600,
     "ville": "Loudéac",
     "latitude": "48.177916",
     "longitude": "-2.754989",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
+    "photoBatiment": "",
     "groupeparent": "Ouest-France",
     "nom": "\"",
     "prenom": "\"",
@@ -165,7 +177,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "1 rue de l'Yser",
     "cp": 22500,
     "ville": "Paimpol",
@@ -180,7 +192,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "23 rue Jouallan",
     "cp": 22000,
     "ville": "Saint Brieuc",
@@ -195,7 +207,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "24 rue Algésiras",
     "cp": 29275,
     "ville": "Brest",
@@ -210,7 +222,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "11 place de la Mairie",
     "cp": 29270,
     "ville": "Carhaix",
@@ -225,7 +237,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "10 av. du Dr Nicolas",
     "cp": 29900,
     "ville": "Concarneau",
@@ -240,7 +252,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "45 rue Camille Réaud",
     "cp": 29100,
     "ville": "Douarnenez",
@@ -255,7 +267,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "26 rue d'Aiguillon",
     "cp": 29600,
     "ville": "Morlaix",
@@ -270,7 +282,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "24 Bd Dupleix",
     "cp": 29101,
     "ville": "Quimper",
@@ -285,7 +297,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "12 rue Génot",
     "cp": 29300,
     "ville": "Quimperlé",
@@ -300,7 +312,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "10 rue du Breil",
     "cp": 35051,
     "ville": "Rennes",
@@ -315,7 +327,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "16 rue de la Forêt",
     "cp": 35305,
     "ville": "Fougères",
@@ -330,7 +342,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "14 C rue de la Gare",
     "cp": 35600,
     "ville": "Redon",
@@ -345,7 +357,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "SIGL",
     "rue": "38 rue du Pré-Botté",
     "cp": 35051,
     "ville": "Rennes",
@@ -360,7 +372,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "15 rue Jean Jaurès",
     "cp": 35409,
     "ville": "Saint Malo",
@@ -375,7 +387,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "36 Bd de Châteaubriant",
     "cp": 35500,
     "ville": "Vitré",
@@ -390,7 +402,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "66 place Foch",
     "cp": 44151,
     "ville": "Ancenis",
@@ -405,7 +417,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "9 rue Michel Grimaud",
     "cp": 44110,
     "ville": "Chateaubriant",
@@ -420,7 +432,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "4 Bd Hennecart",
     "cp": 44500,
     "ville": "La Baule",
@@ -435,7 +447,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "2 quai François Mitterand",
     "cp": 44203,
     "ville": "Nantes",
@@ -450,7 +462,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "2 place Pierre Semard",
     "cp": 44600,
     "ville": "St Nazaire",
@@ -465,7 +477,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "SIGL",
+    "societe": "Ouest France",
     "rue": "38  rue de la Guillauderie",
     "cp": 44118,
     "ville": "La Chevrolière",
@@ -480,7 +492,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "5 bis, rue Thiers",
     "cp": 49051,
     "ville": "Angers",
@@ -495,7 +507,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "15 rue du Bourg Baudry",
     "cp": 49300,
     "ville": "Cholet",
@@ -510,7 +522,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "32 rue de la Constitution",
     "cp": 50305,
     "ville": "Avranches",
@@ -525,7 +537,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "8 rue de l'ancien quai",
     "cp": 50100,
     "ville": "Cherbourg",
@@ -540,7 +552,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "17 rue du Lycée",
     "cp": 50206,
     "ville": "Coutances",
@@ -555,7 +567,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "92 rue Couraye",
     "cp": 50400,
     "ville": "Granville",
@@ -570,7 +582,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "10 rue de la barque",
     "cp": 50003,
     "ville": "Saint-Lô",
@@ -585,7 +597,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "42 Bis av Carnot",
     "cp": 53210,
     "ville": "Château-Gontier",
@@ -600,7 +612,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "92 av. Robert Buron",
     "cp": 53000,
     "ville": "Laval",
@@ -615,7 +627,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "Parvis Notre Dame",
     "cp": 53100,
     "ville": "Mayenne",
@@ -630,7 +642,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "20 rue des Quatre Vents",
     "cp": 56400,
     "ville": "Auray",
@@ -645,7 +657,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "55 rue du Port",
     "cp": 56100,
     "ville": "Lorient",
@@ -660,7 +672,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "1 Bis Bd des Carmes",
     "cp": 56800,
     "ville": "Ploërmel",
@@ -675,7 +687,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "21 rue Nationale",
     "cp": 56300,
     "ville": "Pontivy",
@@ -690,7 +702,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "15 rue de Closmadeuc",
     "cp": 56000,
     "ville": "Vannes",
@@ -705,7 +717,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "11, rue Saint Blaise",
     "cp": 61000,
     "ville": "Alençon",
@@ -720,7 +732,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "13, place Henri IV",
     "cp": 61200,
     "ville": "Argentan",
@@ -735,7 +747,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "2 Rue Des rivières",
     "cp": 61100,
     "ville": "Flers",
@@ -750,7 +762,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "13, rue du Marché au Blé",
     "cp": 72200,
     "ville": "La Flèche",
@@ -765,7 +777,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "35, rue Gambetta",
     "cp": 72000,
     "ville": "Le Mans",
@@ -780,7 +792,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "11, rue Carnot",
     "cp": 72300,
     "ville": "Sablé sur Sarthe",
@@ -795,7 +807,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "91, rue du Faubourg St Honoré",
     "cp": 75008,
     "ville": "Paris",
@@ -810,7 +822,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "26 place Kastler",
     "cp": 85300,
     "ville": "Challans",
@@ -825,7 +837,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "21 bis rue de la République",
     "cp": 85200,
     "ville": "Fontenay-Le-Comte",
@@ -840,7 +852,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "4 rue Raymond Poincaré",
     "cp": 85000,
     "ville": "La Roche-sur-Yon",
@@ -855,7 +867,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "7 place du Poilu de France",
     "cp": 85100,
     "ville": "Les Sables d'Olonne",
@@ -870,7 +882,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "17 Grande rue",
     "cp": 85500,
     "ville": "Les Herbiers",
@@ -885,7 +897,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OF",
+    "societe": "Ouest France",
     "rue": "8, avenue Jean Cristau",
     "cp": 85800,
     "ville": "St Gilles Croix-de-vie",
@@ -990,7 +1002,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "OFM",
+    "societe": "Ouest France Multimedia",
     "rue": "10, rue du Breil zone industrielle de Chantepie",
     "cp": 35200,
     "ville": "RENNES",
@@ -1122,7 +1134,7 @@ const DATA = [
     "nom": "Boucher",
     "prenom": "Jean-Paul",
     "photo": "",
-    "description": "Edition de livres.Depuis plus de quarante ans, \nles éditions Ouest-France s’imposent comme l’éditeur des régions.\nLoin de se limiter au grand ouest, \nelles participent activement à la mise en valeur\n du patrimoine culturel, local, régional et national.\n Du tourisme à l’histoire en passant par les arts,\n la peinture mais aussi les thématiques pratiques,\n 150 nouveautés sont publiées par an.\n Presque une trentaine de beaux-livres viennent enrichir\n chaque année un catalogue de 1800 titres et de\n 2000 auteurs tous spécialistes dans leurs domaines .\nRigueur de l’information et qualité de l’iconographie."
+    "description": "Edition de livres.Depuis plus de quarante ans, les éditions Ouest-France s’imposent comme l’éditeur des régions.\nLoin de se limiter au grand ouest, \nelles participent activement à la mise en valeur\n du patrimoine culturel, local, régional et national.\n Du tourisme à l’histoire en passant par les arts,\n la peinture mais aussi les thématiques pratiques,\n 150 nouveautés sont publiées par an.\n Presque une trentaine de beaux-livres viennent enrichir\n chaque année un catalogue de 1800 titres et de\n 2000 auteurs tous spécialistes dans leurs domaines .\nRigueur de l’information et qualité de l’iconographie."
   }
  ]
 

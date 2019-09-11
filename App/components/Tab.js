@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import {View, Text, StyleSheet} from 'react-native';
+import { Container, Header, Content, Tab, Tabs, Icon, Left, Button } from 'native-base';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import DATA from '../consts/data';
 
 export default class Present extends Component {
@@ -10,11 +10,17 @@ export default class Present extends Component {
       
         <Container>
           <Header hasTabs />
+          <Left>
+            <Button transparent>
+              <Icon name='arrow-back' style={StyleSheet= {height:50, width:50 }} />
+            </Button>
+          </Left>
           <Tabs>
             <Tab heading="Infos">
               <View >           
                         
                               <View>
+                                  <Icon name='logo' scr= {adress.logo}/>
                                   <Text >{adress.groupeparent}</Text>
                                   <Text >{adress.societe}</Text>
                                   <Text >{adress.typeBatiment}</Text>
@@ -47,6 +53,7 @@ export default class Present extends Component {
                                   <Text >{adress.ville}</Text>
                                   <Text >{adress.rue}</Text>
                                   <Text >{adress.societe}</Text>
+                                  <Text >{adress.cp}</Text>
                               </View>
                         
                   </View>
@@ -60,6 +67,6 @@ export default class Present extends Component {
   }
 }
 
-const style = StyleSheet {
+// const style = StyleSheet {
   
-}
+// }
