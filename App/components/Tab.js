@@ -8,11 +8,11 @@ export default class Present extends Component {
       let adress = this.props.adress;
     return (
       
-        <Container>
+        <Container style={styles.Tab} >
           <Header hasTabs />
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back' style={StyleSheet= {height:50, width:50 }} />
+          <Left style={styles.close}>
+            <Button transparent  >
+              <Icon name='arrow-back'  />
             </Button>
           </Left>
           <Tabs>
@@ -20,7 +20,7 @@ export default class Present extends Component {
               <View >           
                         
                               <View>
-                                  <Icon name='logo' scr= {adress.logo}/>
+                                  <Image source={adress.logo} style={{width:200, height:100, resizeMode: 'contain'}}/>
                                   <Text >{adress.groupeparent}</Text>
                                   <Text >{adress.societe}</Text>
                                   <Text >{adress.typeBatiment}</Text>
@@ -67,6 +67,13 @@ export default class Present extends Component {
   }
 }
 
-// const style = StyleSheet {
-  
-// }
+ const styles = StyleSheet.create ({
+  Tab : {
+    height:500, 
+    width:500, 
+  },
+  close :{
+    height:50,
+    width:50,
+  }
+})
