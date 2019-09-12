@@ -43,11 +43,21 @@ export default class Filtres extends Component {
     toggleDrawer(){
         if(this.state.drawerOpen){
             this.props.openDrawer();
+            Animated.timing(this.rotateValue, {
+                toValue: 0,
+                duration: 350,
+                easing: Easing.linear
+              }).start();
             this.setState({
                 drawerOpen: false
             })
         } else {
             this.props.closeDrawer();
+            Animated.timing(this.rotateValue, {
+                toValue: 1,
+                duration: 350,
+                easing: Easing.linear
+              }).start();
             this.setState({
                 drawerOpen: true
             })
@@ -69,36 +79,23 @@ export default class Filtres extends Component {
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
             <Container>
-                <Grid>
-                    <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
-                        <Animated.View style={transformStyle}>
-                                <Icon type="FontAwesome" name="angle-left" 
-                                onPress={() => {
-                                    Animated.timing(this.rotateValue, {
-                                      toValue: 0,
-                                      duration: 350,
-                                      easing: Easing.linear
-                                    }).start();
-                                  }}
-                                  />
-                                  </Animated.View>
-                        </TouchableOpacity>
-                    </Col>
-                <Col>
-                    <Header>
+                
+                    <Header style={{backgroundColor: "#F0F0F0", borderLeftColor: "#F0F0F0"}}>
                     <Body>
                         
                             <Text>Filtres</Text>
                         </Body>
-                        
-                        <Right>
-                            <Button transparent>
-                            <Icon type="AntDesign" name="close" onPress={() => this.props.closeDrawer()}/>
-                    </Button>
-                        </Right>
                         </Header>
                     <Content style={styles.main}>
+                    <Grid>
+                    <Col style={{width:40, backgroundColor: "#F0F0F0"}}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
+                            <Animated.View style={transformStyle}>
+                                <Icon type="FontAwesome" name="angle-right"/>
+                            </Animated.View>
+                        </TouchableOpacity>
+                    </Col>
+                    <Col>
                         <Text>Groupe</Text>
                         <View style={styles.fragment}>
                             {
@@ -106,11 +103,11 @@ export default class Filtres extends Component {
                                     <Button
                                     small 
                                     rounded 
-                                    primary={this.state.selectedSociete === groupe ? false : true }
-                                    success={this.state.selectedSociete === groupe ? true : false }
+                                    warning={this.state.selectedSociete === groupe ? false : true }
+                                    primary={this.state.selectedSociete === groupe ? true : false }
                                     key={i} 
                                     style={styles.tags} 
-                                    onPress={(e) => this.filterByGroup(groupe)}>
+                                    onPress={() => this.filterByGroup(groupe)}>
                                         <Text>{groupe}</Text>
                                     </Button> 
                                     )
@@ -124,7 +121,7 @@ export default class Filtres extends Component {
                                     small 
                                     rounded
                                     warning={this.state.selectedActivity === activite ? false : true }
-                                    success={this.state.selectedActivity === activite ? true : false } 
+                                    primary={this.state.selectedActivity === activite ? true : false } 
                                     key={i} 
                                     style={styles.tags} 
                                     onPress={() => this.filterByActivity(activite)}>
@@ -133,12 +130,12 @@ export default class Filtres extends Component {
                                 )
                             }
                         </View>
-                        <Button block success style={styles.tags}  onPress={() => this.props.closeDrawer()}><Text>Valider</Text></Button>
+                        <Button block primary style={styles.tags}  onPress={() => this.props.closeDrawer()}><Text>Valider</Text></Button>
                         <Button transparent danger style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
-                        
+                      </Col></Grid>  
                     </Content>
-                </Col>
-                </Grid>
+                
+                
             </Container>
         )
     }

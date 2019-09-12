@@ -60,28 +60,40 @@ export default class Main extends Component {
         })
     }
 
+    search(text){
+        let search = text.trim().toLowerCase().split(' ');
+        let data = [];
+        for(i of DATA){
+            let obj = Object.values(i).toString().toLowerCase();
+            if(search.every(el => obj.includes(el))){
+                data.push(i);
+            }
+        }
+        this.setState({
+            adresses : data
+        })
+    }
+
     render(){
         return(
             <Container>
-                <Header searchBar rounded hasSegment>
+                <Header searchBar rounded>
+                    
                     <Left>
-                        <Button transparent>
-                        <Icon name="arrow-back" />
-                        </Button>
-                    </Left>
-                    <Body>
                         <Title>SIPA Ouest-France</Title>
-                    </Body>
-                    <Right>
-                    <Item>
+                    </Left>
+                    
+                    <Item >
                             <Icon name="ios-search" />
-                            <Input placeholder="Search" />
-                            <Icon name="ios-people" />
+                            <Input 
+                            placeholder="Rechercher" 
+                            onChangeText={text => this.search(text)}/>
+                            <Icon type="AntDesign" name="close"/>
                         </Item>
                         <Button transparent>
-                            <Text>Rechercher</Text>
+                            <Text >OK</Text>
                         </Button>
-                    </Right>
+                    
                 </Header>
                 <Segment>
                     <Button first active={this.state.carte ? true : false} onPress={this.showMap}>
@@ -93,6 +105,7 @@ export default class Main extends Component {
                 </Segment> 
                 <Drawer 
                     side="right"
+                    tweenDuration={350}
                     openDrawerOffset={0.5}
                     closedDrawerOffset={40}
                     open={true}
