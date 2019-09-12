@@ -23,7 +23,7 @@ const App = () => {
   return (
     <Fragment>
       <View style={{width:width, height:height}}>
-        <Prensent adress={DATA[0]} />
+        
       </View>
     </Fragment>
   );
