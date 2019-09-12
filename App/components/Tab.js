@@ -1,17 +1,11 @@
-import React, {
-  Component
-} from 'react';
-import {  
-  Container, Header,
+import React, {Component} from 'react';
+import {Container, Header,
   Content, Tab,
   Tabs, Icon,
   Right, Button,
-  Card
-} from 'native-base';
-import {
-  View, Text,
-  StyleSheet, Image
-} from 'react-native';
+  Card} from 'native-base';
+import {View, Text,
+  StyleSheet, Image} from 'react-native';
 import DATA from '../consts/data';
 
 export default class Present extends Component {

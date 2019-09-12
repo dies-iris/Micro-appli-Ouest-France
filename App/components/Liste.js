@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView} from 'react-native';
+import { Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Right, Button } from 'native-base';
+
 
 export default class Liste extends Component {
     constructor(props){
@@ -13,10 +15,10 @@ export default class Liste extends Component {
             <ScrollView>
                 <View style={{flex:1}}>
                     {
-                        this.props.adresses.map((adress, i) =>{
+                        this.props.adress.map((adress, i) =>{
                             return (
                             <View key={i}>
-                                <Text >{adress.societe}</Text>
+                                <Text>{adress.societe}</Text>
                             </View>
                         )})
                     }    
@@ -26,3 +28,5 @@ export default class Liste extends Component {
         )
     }
 }
+
+
