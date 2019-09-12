@@ -7,9 +7,9 @@ const DATA = [
     "latitude": "49.2757",
     "longitude": "-0.701957",
     "typeBatiment": "Rédaction",
-    "photoBâtiment": "",
+    "photoBâtiment": "",  
     "groupeparent": "Ouest-France",
-    "nom": "BALLARD",
+    "nom": "BALLARD", 
     "prenom": "Guillaume",
     "photo": "",
     "description": ""
