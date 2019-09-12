@@ -9,6 +9,8 @@ export default class Filtres extends Component {
         this.state = {
             selectedSociete : null,
             selectedActivity : null,
+            societes:[],
+            activites:[],
             drawerOpen : true
         }
         this.rotateValue = new Animated.Value(0);
@@ -18,24 +20,50 @@ export default class Filtres extends Component {
         return self.indexOf(value) === index;
     }
 
-    filterByGroup(groupe){
+    onSelectGroup(groupe){
         this.setState({
             selectedSociete : groupe
-        })
-        this.props.filterByGroup(groupe);
+        });
+        this.filterByGroup();
+    }
+
+    filterByGroup(){
+        this.setState(state => {
+            const societes = state.societes.concat(state.selectedSociete);
+            return {
+              societes,
+              selectedSociete: '',
+            };
+          });
+        
+        this.props.filterByGroup(this.state.societes);
     }
     
-    filterByActivity(activity){
+    onSelectActivity(activite){
         this.setState({
-            selectedActivity : activity
+            selectedActivity : activite
         })
-        this.props.filterByActivity(activity);
+        this.filterByActivity();
+    }
+
+    filterByActivity(){
+        this.setState(state => {
+            const activites = state.activites.concat(state.selectedActivity);
+            return {
+              activites,
+              selectedActivity: '',
+            };
+          });
+        
+        this.props.filterByActivity(this.state.activites);
     }
 
     reset(){
         this.setState({
             selectedSociete : null,
-            selectedActivity : null
+            selectedActivity : null,
+            societes: [],
+            activites: []
         });
         this.props.reset();
     }
@@ -65,6 +93,7 @@ export default class Filtres extends Component {
     }
 
     render(){
+        console.warn(this.state.selectedActivity)
         const { icon, onPress, data } = this.props;
 
       let rotation = this.rotateValue.interpolate({
@@ -78,24 +107,17 @@ export default class Filtres extends Component {
         const activites = DATA.map(adress => adress.typeBatiment);
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
-            <Container>
-                
-                    <Header style={{backgroundColor: "#F0F0F0", borderLeftColor: "#F0F0F0"}}>
-                    <Body>
-                        
-                            <Text>Filtres</Text>
-                        </Body>
-                        </Header>
-                    <Content style={styles.main}>
-                    <Grid>
-                    <Col style={{width:40, backgroundColor: "#F0F0F0"}}>
+            <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
+                <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24}}>Filtres</Text>
+                    <Grid >
+                    <Col style={{width:40}}>
                         <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
                                 <Icon type="FontAwesome" name="angle-right"/>
                             </Animated.View>
                         </TouchableOpacity>
                     </Col>
-                    <Col>
+                    <Col style={styles.main}>
                         <Text>Groupe</Text>
                         <View style={styles.fragment}>
                             {
@@ -103,11 +125,11 @@ export default class Filtres extends Component {
                                     <Button
                                     small 
                                     rounded 
-                                    warning={this.state.selectedSociete === groupe ? false : true }
-                                    primary={this.state.selectedSociete === groupe ? true : false }
+                                    warning={this.state.societes.includes(groupe) ? false : true }
+                                    primary={this.state.societes.includes(groupe) ? true : false }
                                     key={i} 
                                     style={styles.tags} 
-                                    onPress={() => this.filterByGroup(groupe)}>
+                                    onPress={() => this.onSelectGroup(groupe)}>
                                         <Text>{groupe}</Text>
                                     </Button> 
                                     )
@@ -120,11 +142,11 @@ export default class Filtres extends Component {
                                     <Button 
                                     small 
                                     rounded
-                                    warning={this.state.selectedActivity === activite ? false : true }
-                                    primary={this.state.selectedActivity === activite ? true : false } 
+                                    warning={this.state.activites.includes(activite) ? false : true }
+                                    primary={this.state.activites.includes(activite) ? true : false } 
                                     key={i} 
                                     style={styles.tags} 
-                                    onPress={() => this.filterByActivity(activite)}>
+                                    onPress={() => this.onSelectActivity(activite)}>
                                         <Text>{activite}</Text>
                                     </Button>
                                 )
@@ -133,7 +155,6 @@ export default class Filtres extends Component {
                         <Button block primary style={styles.tags}  onPress={() => this.props.closeDrawer()}><Text>Valider</Text></Button>
                         <Button transparent danger style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
-                    </Content>
                 
                 
             </Container>

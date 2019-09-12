@@ -41,18 +41,20 @@ export default class Main extends Component {
           this.drawer._root.open() 
         };
 
-    filterByGroup(societe){
-        let adr = DATA.filter(adress => adress.groupeparent === societe);
-        this.setState(prevState => ({
-            adresses : adr
-        }));
+    filterByGroup(societes){
+        console.warn(societes)
+        // let adr = DATA.filter(adress => adress.groupeparent === societe);
+        // this.setState(prevState => ({
+        //     adresses : adr
+        // }));
     }
 
-    filterByActivity(activite){
-        let adr = this.state.adresses.filter(adress => adress.typeBatiment == activite);
-        this.setState(prevState => ({
-            adresses : adr
-        }));
+    filterByActivity(activites){
+        console.warn(activites)
+        // let adr = this.state.adresses.filter(adress => adress.typeBatiment == activite);
+        // this.setState(prevState => ({
+        //     adresses : adr
+        // }));
     }
 
     reset(){
@@ -76,6 +78,7 @@ export default class Main extends Component {
     }
 
     render(){
+        console.warn(this.s)
         return(
             <Container>
                 <Header searchBar rounded>
@@ -129,7 +132,7 @@ export default class Main extends Component {
                     <Carte markers={this.state.adresses}/>
                      
                     :
-                    <Liste adresses={this.state.adresses} style={{flex:1}}/>
+                    null// <Liste adresses={this.state.adresses} style={{flex:1}}/>
                     }
                 </Content>
                 </Drawer>
