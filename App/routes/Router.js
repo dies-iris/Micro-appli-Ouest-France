@@ -1,6 +1,5 @@
 import React, {Component} from 'react'; 
 // import myDataset from '../consts/Classeur1.csv';
-import fs from 'react-native-fs';
 import {Text, View, TouchableHighlight, StyleSheet, Dimensions, Button, ScrollView, BackHandler, Alert} from 'react-native';
 const csvFilePath='Classeur1.csv'
 const csv=require('csvtojson')

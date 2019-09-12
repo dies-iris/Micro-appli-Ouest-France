@@ -1,83 +1,130 @@
-import MapboxGL from "@react-native-mapbox-gl/maps";
-import React, {Component} from 'react';
-import { Text, StyleSheet, View, Dimensions} from "react-native";
-import Bubble from './Bubble';
-import DATA from "../consts/data";
+import React, { Component } from 'react'
+import { Text, View, StyleSheet } from 'react-native'
+import MapView, {Marker, Callout} from 'react-native-maps'
+import DATA from '../consts/data'
+import { Button } from 'native-base';
 
-MapboxGL.setAccessToken("pk.eyJ1IjoiZGlzYyIsImEiOiJjazA3dTI5czQxaGdqM25wbmo1ZXU2cTlyIn0.W7a8ZQ6tiaYnEUpzFh5fGg");
+export default class Carte extends Component {
+
+  onRegionChangeComplete (e) {
+    let {latitudeDelta, longitudeDelta} = e;
+    calvados = []
+    cotes_d_armor = []
+    finistere = []
+    ille_et_vilaine = []
+    loire_atlantique = []
+    maine_et_loire = []
+    manche = []
+    mayenne = []
+    morbihan = []
+    orne = []
+    sarthe = []
+    seine = []
+    vendee = []
+    for (i in DATA) {
+      if ((DATA[i]["cp"]<15000) && (DATA[i]["cp"]>13999)) {
+        calvados.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<23000) && (DATA[i]["cp"]>21999)) {
+        cotes_d_armor.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<30000) && (DATA[i]["cp"]>28999)) {
+        finistere.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<36000) && (DATA[i]["cp"]>34999)) {
+        ille_et_vilaine.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<45000) && (DATA[i]["cp"]>43999)) {
+        loire_atlantique.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<50000) && (DATA[i]["cp"]>48999)) {
+        maine_et_loire.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<51000) && (DATA[i]["cp"]>49999)) {
+        manche.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<54000) && (DATA[i]["cp"]>52999)) {
+        mayenne.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<57000) && (DATA[i]["cp"]>55999)) {
+        morbihan.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<62000) && (DATA[i]["cp"]>60999)) {
+        orne.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<73000) && (DATA[i]["cp"]>71999)) {
+        sarthe.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<76000) && (DATA[i]["cp"]>74999)) {
+        seine.push(DATA[i]["cp"]) 
+      }
+      if ((DATA[i]["cp"]<86000) && (DATA[i]["cp"]>84999)) {
+        vendee.push(DATA[i]["cp"]) 
+      }
+    }
+
+    
+    
+    
+
+    // console.warn("calvados : "+calvados)
+    // console.warn("cotes_d_armor : "+cotes_d_armor)
+    // console.warn("finistere : "+finistere)
+    // console.warn("ille_et_vilaine : "+ille_et_vilaine)
+    // console.warn("loire_atlantique : "+loire_atlantique)
+    // console.warn("maine_et_loire : "+maine_et_loire)
+    // console.warn("manche : "+manche)
+    // console.warn("mayenne : "+mayenne)
+    // console.warn("morbihan : "+morbihan)
+    // console.warn("orne : "+orne)
+    // console.warn("sarthe : "+sarthe)
+    // console.warn("seine : "+seine)
+    // console.warn("vendee : "+vendee)
+
+  }
+
+  popup (e) {
+    console.warn('coucou')
+  }
 
 
-const {width, height} = Dimensions.get('window');
+  render() {
+    
+    return (
+      <View style= {styles.container}>
+        <MapView style={styles.map} minZoomLevel={7.5} onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} tracksViewChanges={false} initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
+          {
+            this.props.markers.map((marker, i) => {
+              return <Marker  title={marker.ville} description={marker.typeBatiment+" "+marker.groupeparent} onPress={e => this.popup(e.nativeEvent)} key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
+                <Callout>
+                  <View >
+                    <Button onPress={this.popup.bind(this)} style={styles.button}><Text>{marker.groupeparent+' '+marker.typeBatiment}</Text></Button>
+                  </View>
+                </Callout>
+              </Marker>
+            })
+          }
+
+          
+          
+        </MapView>
+      </View>
+    )
+  }
+}
+
 const styles = StyleSheet.create({
-  page: {
-    height: height,
-    width: width,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
   container: {
-    height: height,
-    width: width,
-    backgroundColor: "tomato"
+      ...StyleSheet.absoluteFillObject
   },
   map: {
-    height: height,
-    width: width,
+    ...StyleSheet.absoluteFillObject
+  },
+  button: {
+    flex: 1,
+    backgroundColor: '#ff3d57',
+    height: 50,
+    width: 200,
   }
 });
 
-export default class Carte extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pointInView: null,
-    };
-
-    this.onPress = this.onPress.bind(this);
-  }
-
-  // componentDidMount() {
-  //   MapboxGL.setTelemetryEnabled(false);
-  // }
- 
-  // async getPoint (){
-  //   const adresses = await this._map.getPointInView([-37.817070, 144.949901]);
-
-  // }
-  async onPress(e) {
-    const pointInView = await this._map.getPointInView(e.geometry.coordinates);
-    this.setState({pointInView});
-  }
-  renderPointInView() {
-    if (!this.state.pointInView) {
-      return <Text>Touch map to see xy pixel location</Text>;
-    }
-
-    return [
-      <Text key={'x'}>x: {this.state.pointInView[0]}</Text>,
-      <Text key={'y'}>y: {this.state.pointInView[1]}</Text>,
-    ];
-  }
-  render() {
-    return (
-      <View style={{flex:1}}>
-        <MapboxGL.MapView
-          ref={c => (this._map = c)}
-          onPress={this.onPress}
-          style={{flex: 1}}
-          zoomEnabled={true}
-        >
-          <MapboxGL.Camera
-            zoomLevel={5}
-            centerCoordinate={[-0.556417, 47.475031]}
-          />
-        </MapboxGL.MapView>
-        
-        <Bubble>{this.renderPointInView()}</Bubble>
-      </View>
-    );
-  }
-}
