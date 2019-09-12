@@ -14,6 +14,7 @@ import {
   Text,
 } from 'react-native';
 import Main from './App/views/Main';
+import Prensent from './App/components/Tab';
 import Carte from './App/components/Carte';
 import DATA from './App/consts/data';
 
