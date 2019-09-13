@@ -8,9 +8,15 @@ import {View, Text,
   StyleSheet, Image} from 'react-native';
 import DATA from '../consts/data';
 
-export default class Present extends Component {
+export default class Present extends Component() { 
+  constructor(props){
+    super(props);
+    this.state={}
+  }
+  
   render() {
     let adress = this.props.adress;
+  
     return (
 
       <Container style={styles.centre}>
