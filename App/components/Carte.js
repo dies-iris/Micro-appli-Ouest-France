@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import DATA from '../consts/data'
 import { Button } from 'native-base';
+import Popup from './Popup';
 
 export default class Carte extends Component {
 
@@ -84,7 +85,6 @@ export default class Carte extends Component {
   }
 
   popup (e) {
-    console.warn('coucou')
   }
 
 
@@ -98,7 +98,7 @@ export default class Carte extends Component {
               return <Marker  title={marker.ville} description={marker.typeBatiment+" "+marker.groupeparent} onPress={e => this.popup(e.nativeEvent)} key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
                 <Callout>
                   <View >
-                    <Button onPress={this.popup.bind(this)} style={styles.button}><Text>{marker.groupeparent+' '+marker.typeBatiment}</Text></Button>
+                    <Popup/>
                   </View>
                 </Callout>
               </Marker>
