@@ -13,7 +13,8 @@ export default class Main extends Component {
         this.state = {
             carte : false,
             adresses : DATA,
-            societes : []
+            societes : [],
+            search: null
         }
         this.showMap = this.showMap.bind(this);
         this.hideMap = this.hideMap.bind(this);
@@ -55,8 +56,10 @@ export default class Main extends Component {
     }
 
     filterByActivity(activites){
+        console.warn(activites);
         if (activites.length > 0){
-            let adr = this.state.adresses.filter(adress => activites.includes(adress.typeBatiment));
+            let pool = this.state.societes.length > 0 ? this.state.adresses : DATA
+            let adr = pool.filter(adress => activites.includes(adress.typeBatiment));
             this.setState({
                 adresses : adr
             });
@@ -67,7 +70,8 @@ export default class Main extends Component {
 
     reset(){
         this.setState({
-            adresses : DATA
+            adresses : DATA,
+            search : null
         })
     }
 
@@ -81,6 +85,7 @@ export default class Main extends Component {
             }
         }
         this.setState({
+            search: text,
             adresses : data
         })
     }
@@ -90,16 +95,17 @@ export default class Main extends Component {
             <Container>
                 <Header searchBar rounded>
                     
-                    <Left>
-                        <Title>SIPA Ouest-France</Title>
+                    <Left style={{flex:2,textAlign:"center"}}>
+                        <Title style={{}}>SIPA Ouest-France</Title>
                     </Left>
                     
-                    <Item >
+                    <Item style={{flex:1}}>
                             <Icon name="ios-search" />
                             <Input 
                             placeholder="Rechercher" 
-                            onChangeText={text => this.search(text)}/>
-                            <Icon type="AntDesign" name="close"/>
+                            onChangeText={text => this.search(text)}
+                            value={this.state.search}/>
+                            <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}/>
                         </Item>
                         <Button transparent>
                             <Text >OK</Text>
@@ -121,7 +127,6 @@ export default class Main extends Component {
                     closedDrawerOffset={40}
                     open={true}
                     tapToClose={true}
-                    onOpenStart={() => {}}
                     ref={(ref) => { this.drawer = ref; }} 
                     content={
                             <Filtres 

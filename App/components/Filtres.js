@@ -71,7 +71,7 @@ export default class Filtres extends Component {
     }
 
     toggleDrawer(){
-        if(this.state.drawerOpen){
+        if(!this.state.drawerOpen){
             this.props.openDrawer();
             Animated.timing(this.rotateValue, {
                 toValue: 0,
@@ -79,7 +79,7 @@ export default class Filtres extends Component {
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: false
+                drawerOpen: true
             })
         } else {
             this.props.closeDrawer();
@@ -89,13 +89,12 @@ export default class Filtres extends Component {
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: true
+                drawerOpen: false
             })
         }
     }
 
     render(){
-        console.warn(this.state.selectedActivity)
         const { icon, onPress, data } = this.props;
 
       let rotation = this.rotateValue.interpolate({
@@ -154,7 +153,7 @@ export default class Filtres extends Component {
                                 )
                             }
                         </View>
-                        <Button block primary style={styles.tags}  onPress={this.props.closeDrawer}><Text>Valider</Text></Button>
+                        <Button block primary style={styles.tags}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button>
                         <Button block light style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
                 
