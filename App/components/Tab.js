@@ -8,10 +8,10 @@ import {View, Text,
   StyleSheet, Image} from 'react-native';
 import DATA from '../consts/data';
 
-export default class Present extends Component() { 
+export default class Present extends Component { 
   constructor(props){
     super(props);
-    this.state={}
+    // this.state={}
   }
   
   render() {
@@ -24,7 +24,7 @@ export default class Present extends Component() {
           <Header hasTabs style={styles.head}>
             <Right>
               <Button icon rounded bordered danger style={styles.close}>
-                <Icon name='close' />
+                {/* <Icon name='close' onPress={}/> */}
               </Button>
         </Right>
           </Header> 

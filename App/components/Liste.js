@@ -1,20 +1,24 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import { Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Right, Button } from 'native-base';
- import Tab from './Tab'
+import Present from './Tab';
+import DATA from '../consts/data';
 
 export default class Liste extends Component {
     constructor(props){
         super(props);
-        this.state = {Tab: false};
-        this.tableau = this.tableau.bind(this, adress);
+        this.state = {Present: false};
+        this.tableau = this.tableau.bind(this);
     }
 
-    tableau() {
-        this.setState({
-            
-        })
-        return <Tab value={i}/>;
+    tableau(adress) {
+        let {Present} = this.state
+        this.setState(
+            {
+                Present: (Present) ? false : true,
+                adress: adress
+            }
+        )
     }
     render(){
        
@@ -46,7 +50,7 @@ export default class Liste extends Component {
                                                         <Text note numberOfLines={1}>{adress.ville}  {adress.typeBatiment}</Text>
                                                     </Body>
                                                         <Right>
-                                                            <Button transparent onClick={this.tableau} >
+                                                            <Button transparent onPress={() => this.tableau(adress)} >
                                                                 <Text>Voir</Text>
                                                             </Button>
                                                         </Right>
@@ -60,7 +64,10 @@ export default class Liste extends Component {
                                  </View>    
                            
                         </List>
-        
+                                    {
+                                        (this.state.Present) &&
+                                        <Present adress={this.state.adress}/>
+                                    }
                     </Content>
                 </ScrollView>
             </Container>

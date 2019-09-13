@@ -12,7 +12,7 @@ export default class Main extends Component {
         super(props);
         this.state = {
             carte : false,
-            adresses : DATA
+            adress : DATA
         }
         this.showMap = this.showMap.bind(this);
         this.hideMap = this.hideMap.bind(this);
@@ -126,10 +126,10 @@ export default class Main extends Component {
                     {
                     this.state.carte ?
                     
-                    <Carte markers={this.state.adresses}/>
+                    <Carte markers={this.state.adress}/>
                      
                     :
-                    <Liste adresses={this.state.adresses} style={{flex:1}}/>
+                    <Liste adress={this.state.adress} style={{flex:1}}/>
                     }
                 </Content>
                 </Drawer>
