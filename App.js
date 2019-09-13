@@ -16,13 +16,15 @@ import {
 import Main from './App/views/Main';
 import Carte from './App/components/Carte';
 import DATA from './App/consts/data';
+import Present from './App/components/Tab';
 
 
 const App = () => {
   return (
     <Fragment>
       <View style={{flex: 1}}>
-        <Carte markers={DATA}/>
+        <Present adress={DATA}/>
+        {/* <Carte markers={DATA}/> */}
         {/* <Main/> */}
       </View>
     </Fragment>

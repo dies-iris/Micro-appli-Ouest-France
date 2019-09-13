@@ -6,11 +6,13 @@ import DATA from '../consts/data';
 export default class Popup extends Component {
   render() {
     let adress = this.props.adress;
-    return (
-      <Container style={styles.main}>
-        <Text>{adress.ville}</Text>
-      </Container>
-    );
+
+      return (
+          <View>
+            <Text>{adress.groupeparent}</Text>
+            <Text>{adress.ville} </Text>
+          </View>
+      );
   }
 }
 
