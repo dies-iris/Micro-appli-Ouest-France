@@ -12,7 +12,8 @@ export default class Main extends Component {
         super(props);
         this.state = {
             carte : false,
-            adresses : DATA
+            adresses : DATA,
+            societes : []
         }
         this.showMap = this.showMap.bind(this);
         this.hideMap = this.hideMap.bind(this);
@@ -42,19 +43,26 @@ export default class Main extends Component {
         };
 
     filterByGroup(societes){
-        console.warn(societes)
-        // let adr = DATA.filter(adress => adress.groupeparent === societe);
-        // this.setState(prevState => ({
-        //     adresses : adr
-        // }));
+        if(societes.length > 0){
+            let adr = DATA.filter(adress => societes.includes(adress.groupeparent));
+            this.setState({
+                adresses : adr,
+                societes: societes
+            }); 
+        } else {
+            this.reset();
+        } 
     }
 
     filterByActivity(activites){
-        console.warn(activites)
-        // let adr = this.state.adresses.filter(adress => adress.typeBatiment == activite);
-        // this.setState(prevState => ({
-        //     adresses : adr
-        // }));
+        if (activites.length > 0){
+            let adr = this.state.adresses.filter(adress => activites.includes(adress.typeBatiment));
+            this.setState({
+                adresses : adr
+            });
+        } else if (this.state.societes.length === 0) {
+            this.reset();
+        }
     }
 
     reset(){
@@ -78,7 +86,6 @@ export default class Main extends Component {
     }
 
     render(){
-        console.warn(this.s)
         return(
             <Container>
                 <Header searchBar rounded>
@@ -132,7 +139,10 @@ export default class Main extends Component {
                     <Carte markers={this.state.adresses}/>
                      
                     :
-                    null// <Liste adresses={this.state.adresses} style={{flex:1}}/>
+                    this.state.adresses.length > 0 ?
+                    <Liste adresses={this.state.adresses} style={{flex:1}}/>
+                    :
+                    <Text>Aucun resultat trouvé. </Text>
                     }
                 </Content>
                 </Drawer>

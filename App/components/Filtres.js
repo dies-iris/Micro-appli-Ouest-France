@@ -7,13 +7,13 @@ export default class Filtres extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selectedSociete : null,
-            selectedActivity : null,
             societes:[],
             activites:[],
             drawerOpen : true
         }
         this.rotateValue = new Animated.Value(0);
+        this.onSelectActivity = this.onSelectActivity.bind(this);
+        this.onSelectGroup = this.onSelectGroup.bind(this);
     }
 
     onlyUnique(value, index, self) { 
@@ -21,47 +21,49 @@ export default class Filtres extends Component {
     }
 
     onSelectGroup(groupe){
-        this.setState({
-            selectedSociete : groupe
-        });
-        this.filterByGroup();
+        if (this.state.societes.includes(groupe)){
+            let removeGroup = this.state.societes.filter(societe => societe !== groupe);
+            this.setState({
+                societes:removeGroup
+            },() => {
+                this.props.filterByGroup(this.state.societes);
+          })
+        } else {
+          this.setState(state => {
+            const societes = state.societes.concat(groupe);
+            return {
+              societes
+            };
+          },() => {
+              this.props.filterByGroup(this.state.societes);
+        }); 
+          
+        }
     }
 
-    filterByGroup(){
-        this.setState(state => {
-            const societes = state.societes.concat(state.selectedSociete);
-            return {
-              societes,
-              selectedSociete: '',
-            };
-          });
-        
-        this.props.filterByGroup(this.state.societes);
-    }
-    
     onSelectActivity(activite){
-        this.setState({
-            selectedActivity : activite
-        })
-        this.filterByActivity();
-    }
-
-    filterByActivity(){
-        this.setState(state => {
-            const activites = state.activites.concat(state.selectedActivity);
-            return {
-              activites,
-              selectedActivity: '',
-            };
-          });
-        
-        this.props.filterByActivity(this.state.activites);
+        if (this.state.activites.includes(activite)){
+            let removeActivity = this.state.activites.filter(act => act !== activite);
+            this.setState({
+                activites:removeActivity
+            },() => {
+                this.props.filterByActivity(this.state.activites);
+            })
+            
+        } else {
+            this.setState(state => {
+                const activites = state.activites.concat(activite);
+                return {
+                  activites
+                };
+              },() => {
+                this.props.filterByActivity(this.state.activites);
+            });
+        }
     }
 
     reset(){
         this.setState({
-            selectedSociete : null,
-            selectedActivity : null,
             societes: [],
             activites: []
         });
@@ -152,8 +154,8 @@ export default class Filtres extends Component {
                                 )
                             }
                         </View>
-                        <Button block primary style={styles.tags}  onPress={() => this.props.closeDrawer()}><Text>Valider</Text></Button>
-                        <Button transparent danger style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
+                        <Button block primary style={styles.tags}  onPress={this.props.closeDrawer}><Text>Valider</Text></Button>
+                        <Button block light style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
                 
                 
