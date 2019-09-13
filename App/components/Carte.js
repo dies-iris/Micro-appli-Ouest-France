@@ -4,10 +4,17 @@ import MapView, {Marker, Callout} from 'react-native-maps'
 import DATA from '../consts/data'
 import { Button } from 'native-base';
 import Popup from './Popup';
-import Present from './Tab';
+import Present from './Present';
 
 export default class Carte extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      ficheOuverte: false,
 
+    }
+    
+  }
   onRegionChangeComplete (e) {
     let {latitudeDelta, longitudeDelta} = e;
     calvados = []
@@ -88,6 +95,9 @@ export default class Carte extends Component {
   popup (e) {
   }
 
+  onCalloutPress(marker){
+    this.setState({ficheOuverte: marker})
+  }
 
   render() {
     
@@ -97,9 +107,12 @@ export default class Carte extends Component {
           {
             this.props.markers.map((marker, i) => {
               return <Marker key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
-                <Callout>
-                  <View >
-                    <Present adress={DATA} />
+                <Callout onPress={()=> this.onCalloutPress(marker)}>
+                  <View style={styles.popup}>
+                    <Text>{marker.societe}</Text>
+                    <Text>{marker.rue}</Text>
+                    <Text>{marker.ville}</Text>
+                    <Text>{marker.cp}</Text>
                   </View>
                 </Callout>
               </Marker>
@@ -109,12 +122,21 @@ export default class Carte extends Component {
           
           
         </MapView>
+        {
+          this.state.ficheOuverte && 
+          <Present adresse={this.state.ficheOuverte}/>
+        }
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  popup: {
+    flex: 1,
+    // width: 90,
+    height: 90,
+  },
   container: {
       ...StyleSheet.absoluteFillObject
   },

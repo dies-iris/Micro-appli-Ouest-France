@@ -12,9 +12,11 @@ import {
   View, Text,
   StyleSheet, Image
 } from 'react-native';
+import DATA from '../consts/data';
 
 export default class Present extends Component {
   render() {
+    console.warn('coucou')
     let adress = this.props.adress;
     return (
 
@@ -29,8 +31,12 @@ export default class Present extends Component {
           </Header> 
           <Tabs >
             <Tab heading = "Infos" >
-                <View style={styles.text} >
-                  
+                <View style={styles.text}>
+                  <Image source = {adress.logo} style = {{
+                    width: 200,
+                    height: 100,
+                    resizeMode: 'contain'
+                  }}/> 
                   <Text>{adress.groupeparent}</Text> 
                   <Text>{adress.societe}</Text> 
                   <Text>{adress.typeBatiment}</Text>
