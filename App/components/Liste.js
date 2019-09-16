@@ -26,12 +26,11 @@ export default class Liste extends Component {
             <Container>
                 <ScrollView>
                     <Content>
-                        <Header />
                         <List>
                             
                                 <View style={{flex:1}}>
                                     {
-                                        this.props.adress.map((adress, i) =>{
+                                        this.props.adresses.map((adress, i) =>{
                                             return (
                                                 <View key={i}>
                                                     <ListItem thumbnail>

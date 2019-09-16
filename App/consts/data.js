@@ -1098,7 +1098,7 @@ const DATA = [
     "longitude": "-1.6291111111111112",
     "typeBatiment": "Siège",
     "photoBâtiment": "",
-    "logo": require('../images/dans_nos_cœurs.jpg'),
+    "logo": require('../images/dans_nos_coeurs.jpg'),
     "groupeparent": "Additi",
     "nom": "Tricart",
     "prenom": "Anne-Sophie",

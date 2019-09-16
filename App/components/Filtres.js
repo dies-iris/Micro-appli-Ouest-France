@@ -7,41 +7,71 @@ export default class Filtres extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selectedSociete : null,
-            selectedActivity : null,
+            societes:[],
+            activites:[],
             drawerOpen : true
         }
         this.rotateValue = new Animated.Value(0);
+        this.onSelectActivity = this.onSelectActivity.bind(this);
+        this.onSelectGroup = this.onSelectGroup.bind(this);
     }
 
     onlyUnique(value, index, self) { 
         return self.indexOf(value) === index;
     }
 
-    filterByGroup(groupe){
-        this.setState({
-            selectedSociete : groupe
-        })
-        this.props.filterByGroup(groupe);
+    onSelectGroup(groupe){
+        if (this.state.societes.includes(groupe)){
+            let removeGroup = this.state.societes.filter(societe => societe !== groupe);
+            this.setState({
+                societes:removeGroup
+            },() => {
+                this.props.filterByGroup(this.state.societes);
+          })
+        } else {
+          this.setState(state => {
+            const societes = state.societes.concat(groupe);
+            return {
+              societes
+            };
+          },() => {
+              this.props.filterByGroup(this.state.societes);
+        }); 
+          
+        }
     }
-    
-    filterByActivity(activity){
-        this.setState({
-            selectedActivity : activity
-        })
-        this.props.filterByActivity(activity);
+
+    onSelectActivity(activite){
+        if (this.state.activites.includes(activite)){
+            let removeActivity = this.state.activites.filter(act => act !== activite);
+            this.setState({
+                activites:removeActivity
+            },() => {
+                this.props.filterByActivity(this.state.activites);
+            })
+            
+        } else {
+            this.setState(state => {
+                const activites = state.activites.concat(activite);
+                return {
+                  activites
+                };
+              },() => {
+                this.props.filterByActivity(this.state.activites);
+            });
+        }
     }
 
     reset(){
         this.setState({
-            selectedSociete : null,
-            selectedActivity : null
+            societes: [],
+            activites: []
         });
         this.props.reset();
     }
 
     toggleDrawer(){
-        if(this.state.drawerOpen){
+        if(!this.state.drawerOpen){
             this.props.openDrawer();
             Animated.timing(this.rotateValue, {
                 toValue: 0,
@@ -49,7 +79,7 @@ export default class Filtres extends Component {
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: false
+                drawerOpen: true
             })
         } else {
             this.props.closeDrawer();
@@ -59,7 +89,7 @@ export default class Filtres extends Component {
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: true
+                drawerOpen: false
             })
         }
     }
@@ -78,24 +108,17 @@ export default class Filtres extends Component {
         const activites = DATA.map(adress => adress.typeBatiment);
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
-            <Container>
-                
-                    <Header style={{backgroundColor: "#F0F0F0", borderLeftColor: "#F0F0F0"}}>
-                    <Body>
-                        
-                            <Text>Filtres</Text>
-                        </Body>
-                        </Header>
-                    <Content style={styles.main}>
-                    <Grid>
-                    <Col style={{width:40, backgroundColor: "#F0F0F0"}}>
+            <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
+                <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24}}>Filtres</Text>
+                    <Grid >
+                    <Col style={{width:40}}>
                         <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
                                 <Icon type="FontAwesome" name="angle-right"/>
                             </Animated.View>
                         </TouchableOpacity>
                     </Col>
-                    <Col>
+                    <Col style={styles.main}>
                         <Text>Groupe</Text>
                         <View style={styles.fragment}>
                             {
@@ -103,11 +126,11 @@ export default class Filtres extends Component {
                                     <Button
                                     small 
                                     rounded 
-                                    warning={this.state.selectedSociete === groupe ? false : true }
-                                    primary={this.state.selectedSociete === groupe ? true : false }
+                                    warning={this.state.societes.includes(groupe) ? false : true }
+                                    primary={this.state.societes.includes(groupe) ? true : false }
                                     key={i} 
                                     style={styles.tags} 
-                                    onPress={() => this.filterByGroup(groupe)}>
+                                    onPress={() => this.onSelectGroup(groupe)}>
                                         <Text>{groupe}</Text>
                                     </Button> 
                                     )
@@ -120,20 +143,19 @@ export default class Filtres extends Component {
                                     <Button 
                                     small 
                                     rounded
-                                    warning={this.state.selectedActivity === activite ? false : true }
-                                    primary={this.state.selectedActivity === activite ? true : false } 
+                                    warning={this.state.activites.includes(activite) ? false : true }
+                                    primary={this.state.activites.includes(activite) ? true : false } 
                                     key={i} 
                                     style={styles.tags} 
-                                    onPress={() => this.filterByActivity(activite)}>
+                                    onPress={() => this.onSelectActivity(activite)}>
                                         <Text>{activite}</Text>
                                     </Button>
                                 )
                             }
                         </View>
-                        <Button block primary style={styles.tags}  onPress={() => this.props.closeDrawer()}><Text>Valider</Text></Button>
-                        <Button transparent danger style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
+                        <Button block primary style={styles.tags}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button>
+                        <Button block light style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
-                    </Content>
                 
                 
             </Container>

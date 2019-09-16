@@ -13,7 +13,9 @@ export default class Main extends Component {
         super(props);
         this.state = {
             carte : false,
-            adress : DATA,
+            adresses : DATA,
+            societes : [],
+            search: null
         }
         this.showMap = this.showMap.bind(this);
         this.hideMap = this.hideMap.bind(this);
@@ -42,23 +44,35 @@ export default class Main extends Component {
           this.drawer._root.open() 
         };
 
-    filterByGroup(societe){
-        let adr = DATA.filter(adress => adress.groupeparent === societe);
-        this.setState(prevState => ({
-            adresses : adr
-        }));
+    filterByGroup(societes){
+        if(societes.length > 0){
+            let adr = DATA.filter(adress => societes.includes(adress.groupeparent));
+            this.setState({
+                adresses : adr,
+                societes: societes
+            }); 
+        } else {
+            this.reset();
+        } 
     }
 
-    filterByActivity(activite){
-        let adr = this.state.adresses.filter(adress => adress.typeBatiment == activite);
-        this.setState(prevState => ({
-            adresses : adr
-        }));
+    filterByActivity(activites){
+        console.warn(activites);
+        if (activites.length > 0){
+            let pool = this.state.societes.length > 0 ? this.state.adresses : DATA
+            let adr = pool.filter(adress => activites.includes(adress.typeBatiment));
+            this.setState({
+                adresses : adr
+            });
+        } else if (this.state.societes.length === 0) {
+            this.reset();
+        }
     }
 
     reset(){
         this.setState({
-            adresses : DATA
+            adresses : DATA,
+            search : null
         })
     }
 
@@ -72,6 +86,7 @@ export default class Main extends Component {
             }
         }
         this.setState({
+            search: text,
             adresses : data
         })
     }
@@ -81,16 +96,17 @@ export default class Main extends Component {
             <Container>
                 <Header searchBar rounded>
                     
-                    <Left>
-                        <Title>SIPA Ouest-France</Title>
+                    <Left style={{flex:2,textAlign:"center"}}>
+                        <Title style={{}}>SIPA Ouest-France</Title>
                     </Left>
                     
-                    <Item >
+                    <Item style={{flex:1}}>
                             <Icon name="ios-search" />
                             <Input 
                             placeholder="Rechercher" 
-                            onChangeText={text => this.search(text)}/>
-                            <Icon type="AntDesign" name="close"/>
+                            onChangeText={text => this.search(text)}
+                            value={this.state.search}/>
+                            <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}/>
                         </Item>
                         <Button transparent>
                             <Text >OK</Text>
@@ -113,7 +129,6 @@ export default class Main extends Component {
                     closedDrawerOffset={40}
                     open={true}
                     tapToClose={true}
-                    onOpenStart={() => {}}
                     ref={(ref) => { this.drawer = ref; }} 
                     content={
                             <Filtres 
@@ -128,10 +143,13 @@ export default class Main extends Component {
                     {
                     this.state.carte ?
                     
-                    <Carte markers={this.state.adress}/>
+                    <Carte markers={this.state.adresses}/>
                      
                     :
-                    <Liste adress={this.state.adress} style={{flex:1}}/>
+                    this.state.adresses.length > 0 ?
+                    <Liste adresses={this.state.adresses} style={{flex:1}}/>
+                    :
+                    <Text>Aucun resultat trouvé. </Text>
                     }
                 </Content>
                 </Drawer> 
