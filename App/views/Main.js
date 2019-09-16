@@ -125,7 +125,6 @@ export default class Main extends Component {
                     tweenDuration={350}
                     openDrawerOffset={0.5}
                     closedDrawerOffset={40}
-                    open={true}
                     tapToClose={true}
                     ref={(ref) => { this.drawer = ref; }} 
                     content={

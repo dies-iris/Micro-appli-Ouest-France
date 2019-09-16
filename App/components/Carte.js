@@ -84,7 +84,7 @@ export default class Carte extends Component {
     
     return (
       <View style= {styles.container}>
-        <MapView style={styles.map} minZoomLevel={7} onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} tracksViewChanges={false} initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
+        <MapView style={styles.map} minZoomLevel={3} onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} tracksViewChanges={false} initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
           {
             this.props.markers.map((marker, i) => {
               return <Marker key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
@@ -104,6 +104,15 @@ export default class Carte extends Component {
           
         </MapView>
         {
+
+
+
+
+
+
+
+
+
           this.state.ficheOuverte && 
           <Present adresse={this.state.ficheOuverte}/>
         }
