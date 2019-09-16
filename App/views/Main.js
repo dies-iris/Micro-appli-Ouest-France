@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
-import { Item, Input, Drawer, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
+import {Image, StyleSheet, Dimensions} from 'react-native';
+import { Item, Input, Drawer, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text} from 'native-base';
 import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
@@ -11,7 +11,7 @@ export default class Main extends Component {
     constructor(props){
         super(props);
         this.state = {
-            carte : false,
+            carte : true,
             adresses : DATA,
             societes : [],
             search: null
@@ -93,31 +93,33 @@ export default class Main extends Component {
     render(){
         return(
             <Container>
-                <Header searchBar rounded>
+                <Header searchBar rounded style={{backgroundColor:"white", flexDirection: "row", justifyContent:"space-between", alignItems: "flex-end"}}>
                     
-                    <Left style={{flex:2,textAlign:"center"}}>
-                        <Title style={{}}>SIPA Ouest-France</Title>
-                    </Left>
+                        <Image source={require('../images/ouest_france.png')} style = {{
+                            flex:1,
+                                                                width: 60,
+                                                                height: 40,
+                                                                resizeMode: 'contain'
+                                                            }}/>
+                        <Title style={{flex:2, color : "#333333", textAlign:"center"}}> Groupe SIPA Ouest-France</Title>
+                   
                     
-                    <Item style={{flex:1}}>
-                            <Icon name="ios-search" />
-                            <Input 
-                            placeholder="Rechercher" 
-                            onChangeText={text => this.search(text)}
-                            value={this.state.search}/>
-                            <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}/>
-                        </Item>
-                        <Button transparent>
-                            <Text >OK</Text>
-                        </Button>
+                    <Item style={{flex:1, borderBottomColor: "#CECECE", borderBottomWidth: 1, margin : 40}}>
+                        <Icon name="ios-search" />
+                        <Input 
+                        placeholder="Rechercher" 
+                        onChangeText={text => this.search(text)}
+                        value={this.state.search}/>
+                        <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}/>
+                    </Item>
                     
                 </Header>
-                <Segment>
-                    <Button first active={this.state.carte ? true : false} onPress={this.showMap}>
-                        <Text>Carte</Text>
+                <Segment style={{backgroundColor:"white", borderBottomColor: "#CECECE", borderBottomWidth: 1}}>
+                    <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.buttonActif : styles.button}>
+                        <Text style={{color : "#FFFFFF"}}>Carte</Text>
                     </Button>
-                    <Button last active={this.state.carte ? false : true} onPress={this.hideMap}>
-                        <Text>Liste</Text>
+                    <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.button : styles.buttonActif}>
+                        <Text style={{color : "#FFFFFF"}}>Liste</Text>
                     </Button>
                 </Segment> 
                 <Drawer 
@@ -125,8 +127,6 @@ export default class Main extends Component {
                     tweenDuration={350}
                     openDrawerOffset={0.5}
                     closedDrawerOffset={40}
-                    open={true}
-                    tapToClose={true}
                     ref={(ref) => { this.drawer = ref; }} 
                     content={
                             <Filtres 
@@ -165,6 +165,14 @@ const styles = StyleSheet.create({
     icon : {
         width : 30,
         height : 30
+    },
+    button : {
+        backgroundColor:"#CECECE",
+        color : "#FFFFFF"
+    },
+    buttonActif : {
+        backgroundColor:"#E2001A",
+        color : "#FFFFFF"
     }
 
 })

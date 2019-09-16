@@ -109,16 +109,16 @@ export default class Filtres extends Component {
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
-                <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24}}>Filtres</Text>
                     <Grid >
                     <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#DBA504"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
-                                <Icon type="FontAwesome" name="angle-right"/>
+                                <Icon type="FontAwesome" name="angle-left" style={{color: 'white'}}/>
                             </Animated.View>
                         </TouchableOpacity>
                     </Col>
                     <Col style={styles.main}>
+                        <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24}}>Filtres</Text>
                         <Text>Groupe</Text>
                         <View style={styles.fragment}>
                             {
