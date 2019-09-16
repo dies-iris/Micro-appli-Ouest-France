@@ -1,63 +1,62 @@
-import React, {
-  Component
-} from 'react';
-import {  
-  Container, Header,
+import React, {Component} from 'react';
+import {Container, Header,
   Content, Tab,
   Tabs, Icon,
   Right, Button,
-  Card
-} from 'native-base';
-import {
-  View, Text,
-  StyleSheet, Image
-} from 'react-native';
+  Card} from 'native-base';
+import {View, Text,
+  StyleSheet, Image} from 'react-native';
 import DATA from '../consts/data';
 
-export default class Present extends Component {
+export default class Present extends Component { 
+  constructor(props){
+    super(props);
+    // this.state={}
+  }
+  
   render() {
-    console.warn('coucou')
-    let adresse = this.props.adresse;
+    let adress = this.props.adress;
+  
     return (
 
       <Container style={styles.centre}>
          <Card style={styles.card}> 
           <Header hasTabs style={styles.head}>
             <Right>
-              <Button icon rounded bordered danger style={styles.close}>
-                <Icon name='close' />
+              <Button icon rounded bordered danger tapToClose={true} style={styles.close}>
+                {/* <Icon name='close' onPress={}/> */}
               </Button>
         </Right>
           </Header> 
           <Tabs >
             <Tab heading = "Infos" >
-                <View style={styles.text}>
-                  <Image source = {adresse.logo} style = {{
+                <View style={styles.text} >
+                  <Image source = {adress.logo} style = {{
                     width: 200,
                     height: 100,
                     resizeMode: 'contain'
                   }}/> 
-                  <Text>{adresse.groupeparent}</Text> 
-                  <Text>{adresse.societe}</Text> 
-                  <Text>{adresse.typeBatiment}</Text>
-                  <Text>{adresse.description}</Text>
+                  <Text >{adress.groupeparent}</Text> 
+                  <Text>{adress.societe}</Text> 
+                  <Text>{adress.typeBatiment}</Text>
+                  <Text>{adress.description}</Text>
                 </View>
             </Tab>
             <Tab heading = "Coordonnées Responsable">
               <View style={styles.text} >
-                <Text>{adresse.photo}</Text>
-                <Text>{adresse.prenom}</Text>
-                <Text>{adresse.nom}</Text> 
+                <Text>{adress.photo}</Text>
+                <Text>{adress.prenom}</Text>
+                <Text>{adress.nom}</Text> 
                 
               </View>
             </Tab>
             <Tab heading = "Coordonnées Entreprise">
               <View style={styles.text}>
-                <Text>{adresse.tel}</Text>
-                <Text>{adresse.ville}</Text>
-                <Text>{adresse.rue}</Text>
-                <Text>{adresse.societe}</Text>
-                <Text>{adresse.cp}</Text>
+                <Text>{adress.tel}</Text>
+                <Text>{adress.ville}</Text>
+                <Text>{adress.rue}</Text>
+                <Text>{adress.societe}</Text>
+                <Text>{adress.cp}</Text>
               </View>
             </Tab>
           </Tabs>
