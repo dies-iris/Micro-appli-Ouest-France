@@ -14,18 +14,18 @@ import {
   Text,
 } from 'react-native';
 import Main from './App/views/Main';
+import Prensent from './App/components/Tab';
 import Carte from './App/components/Carte';
 import DATA from './App/consts/data';
-import Present from './App/components/Present';
-import Popup from './App/components/Popup';
 
 
 const App = () => {
+
   return (
     <Fragment>
-      <View style={{flex: 1}}>
-        <Carte markers={DATA} />
-        {/* <Main/> */}
+      <View style={{flex:1}}>
+        
+        <Main/>
       </View>
     </Fragment>
   );
