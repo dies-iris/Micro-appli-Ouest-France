@@ -134,7 +134,6 @@ export default class Carte extends Component {
 const styles = StyleSheet.create({
   popup: {
     flex: 1,
-    // width: 90,
     height: 90,
   },
   container: {
