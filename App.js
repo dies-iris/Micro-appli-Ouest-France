@@ -21,10 +21,10 @@ import DATA from './App/consts/data';
 
 const App = () => {
 
+
   return (
     <Fragment>
       <View style={{flex:1}}>
-      
         <Main/>
       </View>
     </Fragment>

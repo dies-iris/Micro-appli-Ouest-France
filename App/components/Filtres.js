@@ -103,9 +103,9 @@ export default class Filtres extends Component {
       });
       let transformStyle = { transform: [{ rotate: rotation }] };
 
-        const filiales = DATA.map(adress => adress.groupeparent);
+        const filiales = DATA.map(adresses => adresses.groupeparent);
         const uniqueFilial = filiales.filter(this.onlyUnique);
-        const activites = DATA.map(adress => adress.typeBatiment);
+        const activites = DATA.map(adresses => adresses.typeBatiment);
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>

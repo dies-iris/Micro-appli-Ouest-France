@@ -15,7 +15,7 @@ export default class Present extends Component {
   }
   
   render() {
-    let adress = this.props.adress;
+    let {adresses, press} = this.props;
   
     return (
 
@@ -23,40 +23,40 @@ export default class Present extends Component {
          <Card style={styles.card}> 
           <Header hasTabs style={styles.head}>
             <Right>
-              <Button icon rounded bordered danger tapToClose={true} style={styles.close}>
-                {/* <Icon name='close' onPress={}/> */}
+              <Button icon rounded bordered danger onPress={() => (press) ? press() : null} style={styles.close}>
+                <Icon name='close' />
               </Button>
         </Right>
           </Header> 
           <Tabs >
             <Tab heading = "Infos" >
                 <View style={styles.text} >
-                  <Image source = {adress.logo} style = {{
+                  <Image source={adresses.logo} style = {{
                     width: 200,
                     height: 100,
                     resizeMode: 'contain'
                   }}/> 
-                  <Text >{adress.groupeparent}</Text> 
-                  <Text>{adress.societe}</Text> 
-                  <Text>{adress.typeBatiment}</Text>
-                  <Text>{adress.description}</Text>
+                  <Text >{adresses.groupeparent}</Text> 
+                  <Text>{adresses.societe}</Text> 
+                  <Text>{adresses.typeBatiment}</Text>
+                  <Text>{adresses.description}</Text>
                 </View>
             </Tab>
             <Tab heading = "Coordonnées Responsable">
               <View style={styles.text} >
-                <Text>{adress.photo}</Text>
-                <Text>{adress.prenom}</Text>
-                <Text>{adress.nom}</Text> 
+                <Text>{adresses.photo}</Text>
+                <Text>{adresses.prenom}</Text>
+                <Text>{adresses.nom}</Text> 
                 
               </View>
             </Tab>
             <Tab heading = "Coordonnées Entreprise">
               <View style={styles.text}>
-                <Text>{adress.tel}</Text>
-                <Text>{adress.ville}</Text>
-                <Text>{adress.rue}</Text>
-                <Text>{adress.societe}</Text>
-                <Text>{adress.cp}</Text>
+                <Text>{adresses.tel}</Text>
+                <Text>{adresses.ville}</Text>
+                <Text>{adresses.rue}</Text>
+                <Text>{adresses.societe}</Text>
+                <Text>{adresses.cp}</Text>
               </View>
             </Tab>
           </Tabs>
@@ -90,6 +90,12 @@ const styles = StyleSheet.create({
   centre: {
     alignItems: 'center',
     justifyContent: 'center',
+    position:'absolute',
+    top:0,
+    left:0,
+    width: '100%',
+    height:'100%',
+    backgroundColor: '#80808066' ,
   },
   head:{
     height:100,

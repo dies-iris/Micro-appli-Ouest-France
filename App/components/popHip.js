@@ -14,9 +14,9 @@ import {
 } from 'react-native';
 import DATA from '../consts/data';
 
-export default class Present extends Component {
+export default class PopHip extends Component {
   render() {
-    let adress = this.props.adress;
+    let adresses = this.props.adresses;
     return (
 
       <Container style={styles.centre}>
@@ -31,32 +31,32 @@ export default class Present extends Component {
           <Tabs >
             <Tab heading = "Infos" >
                 <View style={styles.text} >
-                  <Image source = {adress.logo} style = {{
+                  <Image source = {adresses.logo} style = {{
                     width: 200,
                     height: 100,
                     resizeMode: 'contain'
                   }}/> 
-                  <Text >{adress.groupeparent}</Text> 
-                  <Text>{adress.societe}</Text> 
-                  <Text>{adress.typeBatiment}</Text>
-                  <Text>{adress.description}</Text>
+                  <Text >{adresses.groupeparent}</Text> 
+                  <Text>{adresses.societe}</Text> 
+                  <Text>{adresses.typeBatiment}</Text>
+                  <Text>{adresses.description}</Text>
                 </View>
             </Tab>
             <Tab heading = "Coordonnées Responsable">
               <View style={styles.text} >
-                <Text>{adress.photo}</Text>
-                <Text>{adress.prenom}</Text>
-                <Text>{adress.nom}</Text> 
+                <Text>{adresses.photo}</Text>
+                <Text>{adresses.prenom}</Text>
+                <Text>{adresses.nom}</Text> 
                 
               </View>
             </Tab>
             <Tab heading = "Coordonnées Entreprise">
               <View style={styles.text}>
-                <Text>{adress.tel}</Text>
-                <Text>{adress.ville}</Text>
-                <Text>{adress.rue}</Text>
-                <Text>{adress.societe}</Text>
-                <Text>{adress.cp}</Text>
+                <Text>{adresses.tel}</Text>
+                <Text>{adresses.ville}</Text>
+                <Text>{adresses.rue}</Text>
+                <Text>{adresses.societe}</Text>
+                <Text>{adresses.cp}</Text>
               </View>
             </Tab>
           </Tabs>
