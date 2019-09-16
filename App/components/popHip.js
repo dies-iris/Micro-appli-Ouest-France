@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import {Container, Header,
+import React, {
+  Component
+} from 'react';
+import {  
+  Container, Header,
   Content, Tab,
   Tabs, Icon,
   Right, Button,
-  Card} from 'native-base';
-import {View, Text,
-  StyleSheet, Image} from 'react-native';
+  Card
+} from 'native-base';
+import {
+  View, Text,
+  StyleSheet, Image
+} from 'react-native';
 import DATA from '../consts/data';
 
-export default class Present extends Component { 
-  constructor(props){
-    super(props);
-    // this.state={}
-  }
-  
+export default class Present extends Component {
   render() {
     let adress = this.props.adress;
-  
     return (
 
       <Container style={styles.centre}>
@@ -24,7 +24,7 @@ export default class Present extends Component {
           <Header hasTabs style={styles.head}>
             <Right>
               <Button icon rounded bordered danger style={styles.close}>
-                {/* <Icon name='close' onPress={}/> */}
+                <Icon name='close' />
               </Button>
         </Right>
           </Header> 
