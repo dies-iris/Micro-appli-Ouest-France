@@ -23,7 +23,7 @@ export default class Present extends Component {
          <Card style={styles.card}> 
           <Header hasTabs style={styles.head}>
             <Right>
-              <Button icon rounded bordered danger style={styles.close}>
+              <Button icon rounded bordered danger tapToClose={true} style={styles.close}>
                 {/* <Icon name='close' onPress={}/> */}
               </Button>
         </Right>
