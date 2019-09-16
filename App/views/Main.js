@@ -46,7 +46,7 @@ export default class Main extends Component {
 
     filterByGroup(societes){
         if(societes.length > 0){
-            let adr = DATA.filter(adress => societes.includes(adress.groupeparent));
+            let adr = DATA.filter(adress => societes.includes(adress.groupeParent));
             this.setState({
                 adresses : adr,
                 societes: societes

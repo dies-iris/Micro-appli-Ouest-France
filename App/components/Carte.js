@@ -106,13 +106,6 @@ export default class Carte extends Component {
         {
 
 
-
-
-
-
-
-
-
           this.state.ficheOuverte && 
           <Present adresse={this.state.ficheOuverte}/>
         }
