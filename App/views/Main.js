@@ -94,7 +94,7 @@ export default class Main extends Component {
     render(){
         return(
             <Container>
-                <Header searchBar rounded style={{backgroundColor:"white", flexDirection: "row", justifyContent:"space-between", alignItems: "flex-end"}}>
+                <Header searchBar rounded style={{backgroundColor:"white", flexDirection: "row", justifyContent:"space-between", alignItems: "center"}}>
                     
                         <Image source={require('../images/ouest_france.png')} style = {{
                             flex:1,
@@ -105,7 +105,7 @@ export default class Main extends Component {
                         <Title style={{flex:2, color : "#333333", textAlign:"center"}}> Groupe SIPA Ouest-France</Title>
                    
                     
-                    <Item style={{flex:1, borderBottomColor: "#CECECE", borderBottomWidth: 1, margin : 40}}>
+                    <Item style={{flex:1, borderBottomColor: "#CECECE", borderBottomWidth: 1}}>
                         <Icon name="ios-search" />
                         <Input 
                         placeholder="Rechercher" 

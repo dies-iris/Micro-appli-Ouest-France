@@ -9,7 +9,7 @@ export default class Filtres extends Component {
         this.state = {
             societes:[],
             activites:[],
-            drawerOpen : false,
+            drawerOpen : false
         }
         this.rotateValue = new Animated.Value(0);
         this.onSelectActivity = this.onSelectActivity.bind(this);
@@ -71,25 +71,25 @@ export default class Filtres extends Component {
     }
 
     toggleDrawer(){
-        if(!this.state.drawerOpen){
-            this.props.openDrawer();
+        if(this.state.drawerOpen){
+            this.props.closeDrawer();
             Animated.timing(this.rotateValue, {
                 toValue: 0,
                 duration: 350,
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: true
+                drawerOpen: false
             })
         } else {
-            this.props.closeDrawer();
+            this.props.openDrawer();
             Animated.timing(this.rotateValue, {
                 toValue: 1,
                 duration: 350,
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: false
+                drawerOpen: true
             })
         }
     }
