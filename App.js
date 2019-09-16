@@ -25,7 +25,7 @@ const App = () => {
     <Fragment>
       <View style={{flex:1}}>
         
-        <Main/>
+        <Carte/>
       </View>
     </Fragment>
   );

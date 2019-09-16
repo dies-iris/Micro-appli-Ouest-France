@@ -71,25 +71,6 @@ export default class Carte extends Component {
         vendee.push(DATA[i]["cp"]) 
       }
     }
-
-    
-    
-    
-
-    // console.warn("calvados : "+calvados)
-    // console.warn("cotes_d_armor : "+cotes_d_armor)
-    // console.warn("finistere : "+finistere)
-    // console.warn("ille_et_vilaine : "+ille_et_vilaine)
-    // console.warn("loire_atlantique : "+loire_atlantique)
-    // console.warn("maine_et_loire : "+maine_et_loire)
-    // console.warn("manche : "+manche)
-    // console.warn("mayenne : "+mayenne)
-    // console.warn("morbihan : "+morbihan)
-    // console.warn("orne : "+orne)
-    // console.warn("sarthe : "+sarthe)
-    // console.warn("seine : "+seine)
-    // console.warn("vendee : "+vendee)
-
   }
 
   popup (e) {
