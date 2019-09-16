@@ -14,7 +14,7 @@ import {
   Text,
 } from 'react-native';
 import Main from './App/views/Main';
-import Prensent from './App/components/Tab';
+import Prensent from './App/components/Present';
 import Carte from './App/components/Carte';
 import DATA from './App/consts/data';
 
@@ -24,7 +24,7 @@ const App = () => {
   return (
     <Fragment>
       <View style={{flex:1}}>
-        
+      
         <Main/>
       </View>
     </Fragment>

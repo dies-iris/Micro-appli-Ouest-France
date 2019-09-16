@@ -5,6 +5,7 @@ import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
 import Filtres from '../components/Filtres';
+import Present from '../components/Present';
 
 
 export default class Main extends Component {
@@ -12,7 +13,7 @@ export default class Main extends Component {
         super(props);
         this.state = {
             carte : false,
-            adress : DATA
+            adress : DATA,
         }
         this.showMap = this.showMap.bind(this);
         this.hideMap = this.hideMap.bind(this);
@@ -96,7 +97,8 @@ export default class Main extends Component {
                         </Button>
                     
                 </Header>
-                <Segment>
+                
+                 <Segment>
                     <Button first active={this.state.carte ? true : false} onPress={this.showMap}>
                         <Text>Carte</Text>
                     </Button>
@@ -132,7 +134,7 @@ export default class Main extends Component {
                     <Liste adress={this.state.adress} style={{flex:1}}/>
                     }
                 </Content>
-                </Drawer>
+                </Drawer> 
             </Container>
         )
     }
