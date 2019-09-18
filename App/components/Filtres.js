@@ -111,14 +111,14 @@ export default class Filtres extends Component {
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
                     <Grid >
                     <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#E2001A"}} onPress={this.toggleDrawer.bind(this)}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#003399"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
                                 <Icon type="FontAwesome" name="angle-left" style={{color: 'white'}}/>
                             </Animated.View>
                         </TouchableOpacity>
                     </Col>
                     <Col style={styles.main}>
-                        <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24}}>Filtres</Text>
+                        <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24, marginTop : 40}}>Filtres</Text>
                         <Text>Groupe</Text>
                         <View style={styles.fragment}>
                             {
@@ -126,10 +126,8 @@ export default class Filtres extends Component {
                                     <Button
                                     small 
                                     rounded 
-                                    warning={this.state.societes.includes(groupe) ? false : true }
-                                    primary={this.state.societes.includes(groupe) ? true : false }
                                     key={i} 
-                                    style={styles.tags} 
+                                    style={this.state.societes.includes(groupe) ? styles.tagsActif : styles.tags} 
                                     onPress={() => this.onSelectGroup(groupe)}>
                                         <Text>{groupe}</Text>
                                     </Button> 
@@ -143,18 +141,16 @@ export default class Filtres extends Component {
                                     <Button 
                                     small 
                                     rounded
-                                    warning={this.state.activites.includes(activite) ? false : true }
-                                    primary={this.state.activites.includes(activite) ? true : false } 
                                     key={i} 
-                                    style={styles.tags} 
+                                    style={this.state.activites.includes(activite) ? styles.tagsActif : styles.tags} 
                                     onPress={() => this.onSelectActivity(activite)}>
                                         <Text>{activite}</Text>
                                     </Button>
                                 )
                             }
                         </View>
-                        <Button block primary style={styles.tags}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button>
-                        <Button block light style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
+                        <Button block primary style={styles.valider}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button>
+                        <Button block light style={styles.reinitialiser}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
                 
                 
@@ -183,7 +179,31 @@ const styles=StyleSheet.create({
         marginTop : 5,
         marginLeft : 5,
         marginRight : 5,
+        backgroundColor: "#DBA504"
     },
+    tagsActif : {
+        marginBottom : 5,
+        marginTop : 5,
+        marginLeft : 5,
+        marginRight : 5,
+        backgroundColor: "#DBA504"
+    },
+
+    valider : {
+        marginBottom : 5,
+        marginTop : 5,
+        marginLeft : 5,
+        marginRight : 5,
+        backgroundColor: "#E2001A"
+    },
+
+    reinitialiser : {
+        marginBottom : 5,
+        marginTop : 5,
+        marginLeft : 5,
+        marginRight : 5,
+
+    }
 
 
 })

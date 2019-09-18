@@ -95,32 +95,32 @@ export default class Main extends Component {
     render(){
         return(
             <Container>
-                <Header searchBar rounded style={{backgroundColor:"white", flexDirection: "row", justifyContent:"space-between", alignItems: "center"}}>
-                    
+                <Header searchBar rounded style={styles.header}>
+               
                         <Image source={require('../images/ouest_france.png')} style = {{
                             flex:1,
-                                                                width: 60,
-                                                                height: 40,
-                                                                resizeMode: 'contain'
-                                                            }}/>
+                            width: 60,
+                            height: 40,
+                            resizeMode: 'contain'
+                        }}/>
                         <Title style={{flex:2, color : "#333333", textAlign:"center"}}> Groupe SIPA Ouest-France</Title>
-                   
                     
-                    <Item style={{flex:1, borderBottomColor: "#CECECE", borderBottomWidth: 1}}>
-                        <Icon name="ios-search" />
+                    <Item style={styles.searchbar}>
+                        <Icon name="ios-search" style={{color: "#E2001A"}}/>
                         <Input 
                         placeholder="Rechercher" 
+                        placeholderTextColor = "#CECECE"
                         onChangeText={text => this.search(text)}
                         value={this.state.search}/>
                         <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}/>
                     </Item>
                     
                 </Header>
-                <View style={{backgroundColor:"white", borderBottomColor: "#CECECE", borderBottomWidth: 1, flexDirection: "row", justifyContent: "center"}}>
-                    <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.buttonActif : styles.button}>
+                <View style={{backgroundColor:"#00000000", flexDirection: "row", justifyContent: "center", position:"relative", top: -20}}>
+                    <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.leftButtonActif : styles.leftButton}>
                         <Text style={{color : "#FFFFFF", textAlign: "center"}}>Carte</Text>
                     </Button>
-                    <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.button : styles.buttonActif}>
+                    <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.rightButton : styles.rightButtonActif}>
                         <Text style={{color : "#FFFFFF", textAlign: "center"}}>Liste</Text>
                     </Button>
                 </View> 
@@ -154,6 +154,12 @@ export default class Main extends Component {
                     }
                 </Content>
                 </Drawer> 
+                <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.leftButtonActif : styles.leftButton}>
+                        <Text style={{color : "#FFFFFF", textAlign: "center"}}>Carte</Text>
+                    </Button>
+                    <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.rightButton : styles.rightButtonActif}>
+                        <Text style={{color : "#FFFFFF", textAlign: "center"}}>Liste</Text>
+                    </Button>
             </Container>
         )
     }
@@ -165,19 +171,73 @@ const styles = StyleSheet.create({
         width: width,
         height : height
     },
+    header : {
+        backgroundColor:"white", 
+        flexDirection: "row", 
+        justifyContent:"space-between", 
+        alignItems: "center",
+        height : 60
+    },
+    searchbar : {
+        flex:1, 
+        borderBottomColor: "#CECECE",
+        borderBottomWidth: 1
+    },
     icon : {
         width : 30,
         height : 30
     },
-    button : {
+    leftButton : {
         backgroundColor:"#CECECE",
         color : "#FFFFFF",
-        width: 200
+        width: 200,
+        height : 40,
+        justifyContent: "center",
+        alignItems : "center",
+        borderBottomLeftRadius : 40,
+        // borderTopLeftRadius : 20,
+        position: "absolute",
+        right: "50%",
+        top : 60
     },
-    buttonActif : {
+    leftButtonActif : {
         backgroundColor:"#E2001A",
         color : "#FFFFFF",
-        width: 200
+        width: 200,
+        height : 40,
+        justifyContent: "center",
+        alignItems : "center",
+        borderBottomLeftRadius : 40,
+        // borderTopLeftRadius : 20,
+        position: "absolute",
+        right: "50%",
+        top : 60
+    },
+    rightButton : {
+        backgroundColor:"#CECECE",
+        color : "#FFFFFF",
+        width: 200,
+        height : 40,
+        justifyContent: "center",
+        alignItems : "center",
+        borderBottomRightRadius : 40,
+        // borderTopRightRadius : 20,
+        position: "absolute",
+        left: "50%",
+        top : 60
+    },
+    rightButtonActif : {
+        backgroundColor:"#E2001A",
+        color : "#FFFFFF",
+        width: 200,
+        height : 40,
+        justifyContent: "center",
+        alignItems : "center",
+        borderBottomRightRadius : 40,
+        // borderTopRightRadius : 20,
+        position: "absolute",
+        left: "50%",
+        top : 60
     }
 
 })
