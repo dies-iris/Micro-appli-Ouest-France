@@ -3,7 +3,6 @@ import { Text, View, StyleSheet } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import DATA from '../consts/data'
 import { Button } from 'native-base';
-import Popup from './Popup';
 import Present from './Present';
 
 export default class Carte extends Component {
@@ -73,9 +72,6 @@ export default class Carte extends Component {
     }
   }
 
-  popup (e) {
-  }
-
   onCalloutPress(marker){
     this.setState({ficheOuverte: marker})
   }
@@ -90,10 +86,7 @@ export default class Carte extends Component {
               return <Marker key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
                 <Callout onPress={()=> this.onCalloutPress(marker)}>
                   <View style={styles.popup}>
-                    <Text>{marker.societe}</Text>
-                    <Text>{marker.rue}</Text>
-                    <Text>{marker.ville}</Text>
-                    <Text>{marker.cp}</Text>
+                    <Present style={styles.present} adresse={DATA}/>
                   </View>
                 </Callout>
               </Marker>
@@ -117,7 +110,7 @@ export default class Carte extends Component {
 const styles = StyleSheet.create({
   popup: {
     flex: 1,
-    height: 90,
+    width: 300
   },
   container: {
       ...StyleSheet.absoluteFillObject
@@ -130,6 +123,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff3d57',
     height: 50,
     width: 200,
-  }
+  },
+  present: {
+    flex: 1,
+    width: 300,
+    height: 'auto',
+  },
+  
 });
 
