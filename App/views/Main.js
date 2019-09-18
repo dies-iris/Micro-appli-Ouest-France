@@ -58,7 +58,6 @@ export default class Main extends Component {
     }
 
     filterByActivity(activites){
-        console.warn(activites);
         if (activites.length > 0){
             let pool = this.state.societes.length > 0 ? this.state.adresses : DATA
             let adr = pool.filter(adress => activites.includes(adress.typeBatiment));
@@ -141,9 +140,8 @@ export default class Main extends Component {
                     onClose={() => this.closeDrawer()} >
                 <Content padder contentContainerStyle={{flex:1}}>
                     <Carte markers={this.state.adresses}/>
-                    {
-                    !this.state.carte &&
-                    <View style={{flex:1, position:"absolute", width:"100%", marginRight: 0}}>
+                    
+                    <View style={this.state.carte ? styles.listHidden : styles.listShown}>
                         {
                         this.state.adresses.length > 0 ?
                         <Liste adresses={this.state.adresses} style={{flex:1}}/>
@@ -151,14 +149,14 @@ export default class Main extends Component {
                         <Text>Aucun resultat trouvé. </Text>
                         }
                     </View>
-                    }
+                    
                 </Content>
                 </Drawer> 
                 <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.leftButtonActif : styles.leftButton}>
-                        <Text style={{color : "#FFFFFF", textAlign: "center"}}>Carte</Text>
+                        <Text style={{color : "#FFFFFF"}}>Carte</Text>
                     </Button>
                     <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.rightButton : styles.rightButtonActif}>
-                        <Text style={{color : "#FFFFFF", textAlign: "center"}}>Liste</Text>
+                        <Text style={{color : "#FFFFFF"}}>Liste</Text>
                     </Button>
             </Container>
         )
@@ -176,7 +174,9 @@ const styles = StyleSheet.create({
         flexDirection: "row", 
         justifyContent:"space-between", 
         alignItems: "center",
-        height : 60
+        height : 60,
+        borderBottomColor: "#CECECE",
+        borderWidth: 1
     },
     searchbar : {
         flex:1, 
@@ -186,6 +186,17 @@ const styles = StyleSheet.create({
     icon : {
         width : 30,
         height : 30
+    },
+    listHidden : {
+        position: "relative",
+        left: '-120%'
+    },
+    listShown : {
+        flex:1, 
+        position:"absolute", 
+        width: '102%', 
+        right: 0,
+        backgroundColor: 'white'
     },
     leftButton : {
         backgroundColor:"#CECECE",

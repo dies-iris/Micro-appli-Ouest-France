@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Image, ImageBackground  } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import DATA from '../consts/data'
-import { Button } from 'native-base';
-import Present from './Present';
+import { Icon, Card, CardItem, } from 'native-base';
+import Bubble from './Bubble';
 
 export default class Carte extends Component {
   constructor(props){
@@ -84,10 +84,8 @@ export default class Carte extends Component {
           {
             this.props.markers.map((marker, i) => {
               return <Marker key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
-                <Callout onPress={()=> this.onCalloutPress(marker)}>
-                  <View style={styles.popup}>
-                    <Present style={styles.present} adresse={DATA}/>
-                  </View>
+                <Callout >
+                 <Bubble marker={marker}/>
                 </Callout>
               </Marker>
             })
@@ -96,12 +94,6 @@ export default class Carte extends Component {
           
           
         </MapView>
-        {
-
-
-          this.state.ficheOuverte && 
-          <Present adresse={this.state.ficheOuverte}/>
-        }
       </View>
     )
   }
@@ -124,11 +116,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 200,
   },
-  present: {
-    flex: 1,
-    width: 300,
-    height: 'auto',
-  },
+  text : {
+    paddingVertical: 10
+  }
   
 });
 

@@ -186,7 +186,7 @@ const styles=StyleSheet.create({
         marginTop : 5,
         marginLeft : 5,
         marginRight : 5,
-        backgroundColor: "#DBA504"
+        backgroundColor: "#E2001A"
     },
 
     valider : {
