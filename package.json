@@ -11,6 +11,7 @@
     "native-base": "^2.13.7",
     "react": "^16.8.6",
     "react-native": "^0.60.5",
+    "react-native-map-clustering": "^2.0.2",
     "react-native-maps": "0.25.0",
     "react-native-table-component": "^1.2.1"
   },

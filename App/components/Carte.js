@@ -3,9 +3,17 @@ import { Text, View, StyleSheet } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import DATA from '../consts/data'
 import { Button } from 'native-base';
+import Present from './Present';
 
 export default class Carte extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      ficheOuverte: false,
 
+    }
+    
+  }
   onRegionChangeComplete (e) {
     let {latitudeDelta, longitudeDelta} = e;
     calvados = []
@@ -62,43 +70,23 @@ export default class Carte extends Component {
         vendee.push(DATA[i]["cp"]) 
       }
     }
-
-    
-    
-    
-
-    // console.warn("calvados : "+calvados)
-    // console.warn("cotes_d_armor : "+cotes_d_armor)
-    // console.warn("finistere : "+finistere)
-    // console.warn("ille_et_vilaine : "+ille_et_vilaine)
-    // console.warn("loire_atlantique : "+loire_atlantique)
-    // console.warn("maine_et_loire : "+maine_et_loire)
-    // console.warn("manche : "+manche)
-    // console.warn("mayenne : "+mayenne)
-    // console.warn("morbihan : "+morbihan)
-    // console.warn("orne : "+orne)
-    // console.warn("sarthe : "+sarthe)
-    // console.warn("seine : "+seine)
-    // console.warn("vendee : "+vendee)
-
   }
 
-  popup (e) {
-    console.warn("Bah c'est super ça !")
+  onCalloutPress(marker){
+    this.setState({ficheOuverte: marker})
   }
-
 
   render() {
     
     return (
       <View style= {styles.container}>
-        <MapView style={styles.map} minZoomLevel={7} onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} tracksViewChanges={false} initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
+        <MapView style={styles.map} minZoomLevel={3} onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} tracksViewChanges={false} initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
           {
             this.props.markers.map((marker, i) => {
-              return <Marker  title={marker.ville} description={marker.typeBatiment+" "+marker.groupeparent} onPress={e => this.popup(e.nativeEvent)} key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
-                <Callout>
-                  <View >
-                    <Button onPress={this.popup.bind(this)} style={styles.button}><Text>{marker.groupeparent+' '+marker.typeBatiment}</Text></Button>
+              return <Marker key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
+                <Callout onPress={()=> this.onCalloutPress(marker)}>
+                  <View style={styles.popup}>
+                    <Present style={styles.present} adresse={DATA}/>
                   </View>
                 </Callout>
               </Marker>
@@ -108,12 +96,22 @@ export default class Carte extends Component {
           
           
         </MapView>
+        {
+
+
+          this.state.ficheOuverte && 
+          <Present adresse={this.state.ficheOuverte}/>
+        }
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  popup: {
+    flex: 1,
+    width: 300
+  },
   container: {
       ...StyleSheet.absoluteFillObject
   },
@@ -125,6 +123,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff3d57',
     height: 50,
     width: 200,
-  }
+  },
+  present: {
+    flex: 1,
+    width: 300,
+    height: 'auto',
+  },
+  
 });
 

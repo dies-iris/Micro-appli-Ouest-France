@@ -24,11 +24,10 @@ const DATA = [
     "longitude": -0.36422,
     "typeBatiment": "Rédaction",
     "photoBatiment": "",
-    "groupeParent": "Ouest-France",
     "logo": require('../images/ouest_france.png'),
     "groupeParent": "Ouest-France",
     "nom": "BALLARD",
-    "prenom": "Guillaume"?
+    "prenom": "Guillaume",
     "photo": "",
     "description": ""
   },
@@ -1090,7 +1089,7 @@ const DATA = [
     "description": ""
   },
   {
-    "societe": "Dans nos cœurs",
+    "societe": "Dans nos coeurs",
     "rue": "10 rue du Breil",
     "cp": 35200,
     "ville": "RENNES",

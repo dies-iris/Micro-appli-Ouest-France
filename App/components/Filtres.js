@@ -111,7 +111,7 @@ export default class Filtres extends Component {
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
                     <Grid >
                     <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#DBA504"}} onPress={this.toggleDrawer.bind(this)}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#E2001A"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
                                 <Icon type="FontAwesome" name="angle-left" style={{color: 'white'}}/>
                             </Animated.View>

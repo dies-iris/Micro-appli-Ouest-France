@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import { Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Right, Button } from 'native-base';
-import Present from './Tab';
+import Present from './Present';
 import DATA from '../consts/data';
 
 export default class Liste extends Component {

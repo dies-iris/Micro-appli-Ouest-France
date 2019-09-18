@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Image, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, StyleSheet, Dimensions} from 'react-native';
 import { Item, Input, Drawer, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text} from 'native-base';
 import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
 import Filtres from '../components/Filtres';
+import Present from '../components/Present';
 
 
 export default class Main extends Component {
@@ -48,7 +49,8 @@ export default class Main extends Component {
             let adr = DATA.filter(adress => societes.includes(adress.groupeParent));
             this.setState({
                 adresses : adr,
-                societes: societes
+                societes: societes,
+                carte : true
             }); 
         } else {
             this.reset();
@@ -114,14 +116,14 @@ export default class Main extends Component {
                     </Item>
                     
                 </Header>
-                <Segment style={{backgroundColor:"white", borderBottomColor: "#CECECE", borderBottomWidth: 1}}>
+                <View style={{backgroundColor:"white", borderBottomColor: "#CECECE", borderBottomWidth: 1, flexDirection: "row", justifyContent: "center"}}>
                     <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.buttonActif : styles.button}>
-                        <Text style={{color : "#FFFFFF"}}>Carte</Text>
+                        <Text style={{color : "#FFFFFF", textAlign: "center"}}>Carte</Text>
                     </Button>
                     <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.button : styles.buttonActif}>
-                        <Text style={{color : "#FFFFFF"}}>Liste</Text>
+                        <Text style={{color : "#FFFFFF", textAlign: "center"}}>Liste</Text>
                     </Button>
-                </Segment> 
+                </View> 
                 <Drawer 
                     side="right"
                     tweenDuration={350}
@@ -138,19 +140,20 @@ export default class Main extends Component {
                         } 
                     onClose={() => this.closeDrawer()} >
                 <Content padder contentContainerStyle={{flex:1}}>
-                    {
-                    this.state.carte ?
-                    
                     <Carte markers={this.state.adresses}/>
-                     
-                    :
-                    this.state.adresses.length > 0 ?
-                    <Liste adresses={this.state.adresses} style={{flex:1}}/>
-                    :
-                    <Text>Aucun resultat trouvé. </Text>
+                    {
+                    !this.state.carte &&
+                    <View style={{flex:1, position:"absolute", width:"100%", marginRight: 0}}>
+                        {
+                        this.state.adresses.length > 0 ?
+                        <Liste adresses={this.state.adresses} style={{flex:1}}/>
+                        :
+                        <Text>Aucun resultat trouvé. </Text>
+                        }
+                    </View>
                     }
                 </Content>
-                </Drawer>
+                </Drawer> 
             </Container>
         )
     }
@@ -168,11 +171,13 @@ const styles = StyleSheet.create({
     },
     button : {
         backgroundColor:"#CECECE",
-        color : "#FFFFFF"
+        color : "#FFFFFF",
+        width: 200
     },
     buttonActif : {
         backgroundColor:"#E2001A",
-        color : "#FFFFFF"
+        color : "#FFFFFF",
+        width: 200
     }
 
 })

@@ -15,7 +15,7 @@ export default class Present extends Component {
   }
   
   render() {
-    let adress = this.props.adress;
+    let adresse = this.props.adresse;
   
     return (
 
@@ -23,7 +23,7 @@ export default class Present extends Component {
          <Card style={styles.card}> 
           <Header hasTabs style={styles.head}>
             <Right>
-              <Button icon rounded bordered danger style={styles.close}>
+              <Button icon rounded bordered danger tapToClose={true} style={styles.close}>
                 {/* <Icon name='close' onPress={}/> */}
               </Button>
         </Right>
@@ -31,32 +31,32 @@ export default class Present extends Component {
           <Tabs >
             <Tab heading = "Infos" >
                 <View style={styles.text} >
-                  <Image source = {adress.logo} style = {{
+                  <Image source = {adresse.logo} style = {{
                     width: 200,
                     height: 100,
                     resizeMode: 'contain'
                   }}/> 
-                  <Text >{adress.groupeparent}</Text> 
-                  <Text>{adress.societe}</Text> 
-                  <Text>{adress.typeBatiment}</Text>
-                  <Text>{adress.description}</Text>
+                  <Text >{adresse.groupeparent}</Text> 
+                  <Text>{adresse.societe}</Text> 
+                  <Text>{adresse.typeBatiment}</Text>
+                  <Text>{adresse.description}</Text>
                 </View>
             </Tab>
             <Tab heading = "Coordonnées Responsable">
               <View style={styles.text} >
-                <Text>{adress.photo}</Text>
-                <Text>{adress.prenom}</Text>
-                <Text>{adress.nom}</Text> 
+                <Text>{adresse.photo}</Text>
+                <Text>{adresse.prenom}</Text>
+                <Text>{adresse.nom}</Text> 
                 
               </View>
             </Tab>
             <Tab heading = "Coordonnées Entreprise">
               <View style={styles.text}>
-                <Text>{adress.tel}</Text>
-                <Text>{adress.ville}</Text>
-                <Text>{adress.rue}</Text>
-                <Text>{adress.societe}</Text>
-                <Text>{adress.cp}</Text>
+                <Text>{adresse.tel}</Text>
+                <Text>{adresse.ville}</Text>
+                <Text>{adresse.rue}</Text>
+                <Text>{adresse.societe}</Text>
+                <Text>{adresse.cp}</Text>
               </View>
             </Tab>
           </Tabs>
