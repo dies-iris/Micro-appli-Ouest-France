@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, ImageBackground  } from 'react-native'
+import { Text, View, StyleSheet, Image, ImageBackground, Modal  } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import DATA from '../consts/data'
-import { Icon, Card, CardItem, } from 'native-base';
+import { Icon, Card, CardItem, Spinner, } from 'native-base';
 import Bubble from './Bubble';
 
 export default class Carte extends Component {
@@ -10,7 +10,7 @@ export default class Carte extends Component {
     super(props);
     this.state={
       ficheOuverte: false,
-
+      mapLoading : true
     }
     
   }
@@ -76,16 +76,27 @@ export default class Carte extends Component {
     this.setState({ficheOuverte: marker})
   }
 
+  mapReady(){
+    this.setState({
+      mapLoading : false
+    })
+  }
+
   render() {
     
     return (
       <View style= {styles.container}>
-        <MapView style={styles.map} minZoomLevel={3} onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} tracksViewChanges={false} initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
+        <MapView style={styles.map} 
+        minZoomLevel={3} 
+        onMapReady={this.mapReady.bind(this)} 
+        onRegionChangeComplete={this.onRegionChangeComplete.bind(this)} 
+        tracksViewChanges={false} 
+        initialRegion={{latitude:48.235034, longitude:  -2.024200, latitudeDelta:5.5, longitudeDelta: 5.5}}>
           {
             this.props.markers.map((marker, i) => {
               return <Marker key={i} coordinate={{latitude:Number(marker.latitude), longitude:Number(marker.longitude)}}>
-                <Callout >
-                 <Bubble marker={marker}/>
+                <Callout style={{flex: 1, position: "absolute"}}>
+                 <Bubble marker={marker} map={true}/>
                 </Callout>
               </Marker>
             })
@@ -94,6 +105,25 @@ export default class Carte extends Component {
           
           
         </MapView>
+        {
+          (this.state.mapLoading) &&
+            <Modal
+            animationType="none"
+            transparent={true}
+            visible={this.state.modalVisible}
+            >
+            <View style={{
+                flex:1,
+                marginTop: 60,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgba(255,255,255,0.7)"
+                }}>
+              <Spinner color="red"/>
+              
+            </View>
+          </Modal>
+        }
       </View>
     )
   }

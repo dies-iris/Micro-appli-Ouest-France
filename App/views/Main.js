@@ -111,7 +111,7 @@ export default class Main extends Component {
                         placeholderTextColor = "#CECECE"
                         onChangeText={text => this.search(text)}
                         value={this.state.search}/>
-                        <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}/>
+                        <Icon type="AntDesign" name="close" onPress={this.reset.bind(this)}  style={{color: "#CECECE"}} />
                     </Item>
                     
                 </Header>
@@ -163,12 +163,7 @@ export default class Main extends Component {
     }
 }
 
-const {width,height}=Dimensions.get('window');
 const styles = StyleSheet.create({
-    container : {
-        width: width,
-        height : height
-    },
     header : {
         backgroundColor:"white", 
         flexDirection: "row", 
@@ -176,7 +171,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         height : 60,
         borderBottomColor: "#CECECE",
-        borderWidth: 1
+        borderBottomWidth: 2
     },
     searchbar : {
         flex:1, 

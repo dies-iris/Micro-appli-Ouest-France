@@ -111,9 +111,9 @@ export default class Filtres extends Component {
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
                     <Grid >
                     <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#003399"}} onPress={this.toggleDrawer.bind(this)}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#F0F0F0"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
-                                <Icon type="FontAwesome" name="angle-left" style={{color: 'white'}}/>
+                                <Icon type="FontAwesome" name="angle-left" style={{color: '#E2001A'}}/>
                             </Animated.View>
                         </TouchableOpacity>
                     </Col>
@@ -149,7 +149,7 @@ export default class Filtres extends Component {
                                 )
                             }
                         </View>
-                        <Button block primary style={styles.valider}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button>
+                        {/* <Button block primary style={styles.valider}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button> */}
                         <Button block light style={styles.reinitialiser}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
                 
