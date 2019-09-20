@@ -971,8 +971,8 @@ const DATA = [
     "photoBâtiment": "",
     "logo": require('../images/PRECOM/precom.jpg'),
     "groupeParent": "Additi",
-    "nom": "Lelièvre/Phillibert",
-    "prenom": "Patrick/Christian",
+    "nom": "Patrick LELIEVRE",
+    "prenom": "Christian PHILLIBERT",
     "photo": "",
     "description": ""
   },

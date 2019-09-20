@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import { Item, Input, Drawer, Container, Header, Button, Icon, Title, Content, Text} from 'native-base';
 import Liste from '../components/Liste';
 import DATA from '../consts/data';
