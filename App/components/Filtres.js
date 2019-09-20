@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Col, Grid, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
-import {Animated, Easing, View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import { Col, Grid, Container, Button, Icon, Text } from 'native-base';
+import {Animated, Easing, View, TouchableOpacity, StyleSheet} from 'react-native';
 import DATA from '../consts/data';
 
 export default class Filtres extends Component {
@@ -9,7 +9,7 @@ export default class Filtres extends Component {
         this.state = {
             societes:[],
             activites:[],
-            drawerOpen : true
+            drawerOpen : false
         }
         this.rotateValue = new Animated.Value(0);
         this.onSelectActivity = this.onSelectActivity.bind(this);
@@ -71,25 +71,25 @@ export default class Filtres extends Component {
     }
 
     toggleDrawer(){
-        if(!this.state.drawerOpen){
-            this.props.openDrawer();
+        if(this.state.drawerOpen){
+            this.props.closeDrawer();
             Animated.timing(this.rotateValue, {
                 toValue: 0,
                 duration: 350,
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: true
+                drawerOpen: false
             })
         } else {
-            this.props.closeDrawer();
+            this.props.openDrawer();
             Animated.timing(this.rotateValue, {
                 toValue: 1,
                 duration: 350,
                 easing: Easing.linear
               }).start();
             this.setState({
-                drawerOpen: false
+                drawerOpen: true
             })
         }
     }
@@ -103,22 +103,22 @@ export default class Filtres extends Component {
       });
       let transformStyle = { transform: [{ rotate: rotation }] };
 
-        const filiales = DATA.map(adress => adress.groupeparent);
+        const filiales = DATA.map(adress => adress.groupeParent);
         const uniqueFilial = filiales.filter(this.onlyUnique);
         const activites = DATA.map(adress => adress.typeBatiment);
         const uniqueActivite = activites.filter(this.onlyUnique);
         return(
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
-                <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24}}>Filtres</Text>
                     <Grid >
                     <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center"}} onPress={this.toggleDrawer.bind(this)}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#FFFFFF"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
-                                <Icon type="FontAwesome" name="angle-right"/>
+                                <Icon type="FontAwesome" name="angle-left" style={{color: '#E2001A'}}/>
                             </Animated.View>
                         </TouchableOpacity>
                     </Col>
                     <Col style={styles.main}>
+                        <Text style={{textAlign:"center", paddingVertical : 20, fontSize: 24, marginTop : 40}}>Filtres</Text>
                         <Text>Groupe</Text>
                         <View style={styles.fragment}>
                             {
@@ -126,10 +126,8 @@ export default class Filtres extends Component {
                                     <Button
                                     small 
                                     rounded 
-                                    warning={this.state.societes.includes(groupe) ? false : true }
-                                    primary={this.state.societes.includes(groupe) ? true : false }
                                     key={i} 
-                                    style={styles.tags} 
+                                    style={this.state.societes.includes(groupe) ? styles.tagsActif : styles.tags} 
                                     onPress={() => this.onSelectGroup(groupe)}>
                                         <Text>{groupe}</Text>
                                     </Button> 
@@ -143,18 +141,16 @@ export default class Filtres extends Component {
                                     <Button 
                                     small 
                                     rounded
-                                    warning={this.state.activites.includes(activite) ? false : true }
-                                    primary={this.state.activites.includes(activite) ? true : false } 
                                     key={i} 
-                                    style={styles.tags} 
+                                    style={this.state.activites.includes(activite) ? styles.tagsActif : styles.tags} 
                                     onPress={() => this.onSelectActivity(activite)}>
                                         <Text>{activite}</Text>
                                     </Button>
                                 )
                             }
                         </View>
-                        <Button block primary style={styles.tags}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button>
-                        <Button block light style={styles.tags}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
+                        {/* <Button block primary style={styles.valider}  onPress={this.toggleDrawer.bind(this)}><Text>Valider</Text></Button> */}
+                        <Button block light style={styles.reinitialiser}  onPress={this.reset.bind(this)}><Text>Réinitialiser</Text></Button>
                       </Col></Grid>  
                 
                 
@@ -166,7 +162,7 @@ export default class Filtres extends Component {
 const styles=StyleSheet.create({
     main : {
         flex: 1,
-        backgroundColor: "#F0F0F0",
+        backgroundColor: "#FFFFFF",
         paddingHorizontal: 20,
         paddingVertical : 10
     },
@@ -183,7 +179,31 @@ const styles=StyleSheet.create({
         marginTop : 5,
         marginLeft : 5,
         marginRight : 5,
+        backgroundColor: "#DBA504"
     },
+    tagsActif : {
+        marginBottom : 5,
+        marginTop : 5,
+        marginLeft : 5,
+        marginRight : 5,
+        backgroundColor: "#E2001A"
+    },
+
+    valider : {
+        marginBottom : 5,
+        marginTop : 5,
+        marginLeft : 5,
+        marginRight : 5,
+        backgroundColor: "#E2001A"
+    },
+
+    reinitialiser : {
+        marginBottom : 5,
+        marginTop : 5,
+        marginLeft : 5,
+        marginRight : 5,
+
+    }
 
 
 })
