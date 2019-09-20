@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Col, Grid, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
-import {Animated, Easing, View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import { Col, Grid, Container, Button, Icon, Text } from 'native-base';
+import {Animated, Easing, View, TouchableOpacity, StyleSheet} from 'react-native';
 import DATA from '../consts/data';
 
 export default class Filtres extends Component {
@@ -111,7 +111,7 @@ export default class Filtres extends Component {
             <Container style={{flex:1, backgroundColor: "#F0F0F0"}}>
                     <Grid >
                     <Col style={{width:40}}>
-                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#F0F0F0"}} onPress={this.toggleDrawer.bind(this)}>
+                        <TouchableOpacity style={{flex:1, justifyContent:"center", alignItems:"center", backgroundColor:"#FFFFFF"}} onPress={this.toggleDrawer.bind(this)}>
                             <Animated.View style={transformStyle}>
                                 <Icon type="FontAwesome" name="angle-left" style={{color: '#E2001A'}}/>
                             </Animated.View>
@@ -162,7 +162,7 @@ export default class Filtres extends Component {
 const styles=StyleSheet.create({
     main : {
         flex: 1,
-        backgroundColor: "#F0F0F0",
+        backgroundColor: "#FFFFFF",
         paddingHorizontal: 20,
         paddingVertical : 10
     },

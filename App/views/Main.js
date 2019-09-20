@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, Dimensions} from 'react-native';
-import { Item, Input, Drawer, Container, Header, Left, Body, Right, Button, Icon, Title, Segment, Content, Text} from 'native-base';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import { Item, Input, Drawer, Container, Header, Button, Icon, Title, Content, Text} from 'native-base';
 import Liste from '../components/Liste';
 import DATA from '../consts/data';
 import Carte from '../components/Carte';
 import Filtres from '../components/Filtres';
-import Present from '../components/Present';
-
+import Bubble from '../components/Bubble';
 
 export default class Main extends Component {
     constructor(props){
@@ -15,10 +14,13 @@ export default class Main extends Component {
             carte : true,
             adresses : DATA,
             societes : [],
-            search: null
+            search: null,
+            info: null
         }
         this.showMap = this.showMap.bind(this);
         this.hideMap = this.hideMap.bind(this);
+        this.showInfo = this.showInfo.bind(this);
+        this.closeInfo = this.closeInfo.bind(this);
         this.filterByGroup = this.filterByGroup.bind(this);
         this.filterByActivity = this.filterByActivity.bind(this);
         
@@ -50,7 +52,8 @@ export default class Main extends Component {
             this.setState({
                 adresses : adr,
                 societes: societes,
-                carte : true
+                carte : true, 
+                info : null
             }); 
         } else {
             this.reset();
@@ -88,6 +91,18 @@ export default class Main extends Component {
         this.setState({
             search: text,
             adresses : data
+        })
+    }
+
+    showInfo (data){
+        this.setState({
+            info : data
+        })
+    }
+
+    closeInfo(){
+        this.setState({
+            info: null
         })
     }
 
@@ -138,19 +153,20 @@ export default class Main extends Component {
                             reset={this.reset.bind(this)}/>
                         } 
                     onClose={() => this.closeDrawer()} >
-                <Content padder contentContainerStyle={{flex:1}}>
-                    <Carte markers={this.state.adresses}/>
-                    
-                    <View style={this.state.carte ? styles.listHidden : styles.listShown}>
-                        {
-                        this.state.adresses.length > 0 ?
-                        <Liste adresses={this.state.adresses} style={{flex:1}}/>
-                        :
-                        <Text>Aucun resultat trouvé. </Text>
-                        }
-                    </View>
-                    
-                </Content>
+                    <Content padder contentContainerStyle={{flex:1}}>
+                        
+                        <Carte markers={this.state.adresses}/>
+                        
+                        <View style={this.state.carte ? styles.listHidden : styles.listShown}>
+                            {
+                            this.state.adresses.length > 0 ?
+                            <Liste adresses={this.state.adresses} style={{flex:1}} info={this.showInfo}/>
+                            :
+                            <Text>Aucun resultat trouvé. </Text>
+                            }
+                        </View>
+                        
+                    </Content>
                 </Drawer> 
                 <Button first active={this.state.carte ? true : false} onPress={this.showMap} style={this.state.carte ? styles.leftButtonActif : styles.leftButton}>
                         <Text style={{color : "#FFFFFF"}}>Carte</Text>
@@ -158,6 +174,15 @@ export default class Main extends Component {
                     <Button last active={this.state.carte ? false : true} onPress={this.hideMap} style={this.state.carte ? styles.rightButton : styles.rightButtonActif}>
                         <Text style={{color : "#FFFFFF"}}>Liste</Text>
                     </Button>
+                    {
+                        (this.state.info !== null) &&
+
+                        <View style={styles.overlay}>
+                            <View style={styles.popup}>
+                                <Bubble marker={this.state.info} hide={this.closeInfo} fermer={true}/>
+                            </View>
+                        </View>
+                    }
             </Container>
         )
     }
@@ -170,8 +195,26 @@ const styles = StyleSheet.create({
         justifyContent:"space-between", 
         alignItems: "center",
         height : 60,
-        borderBottomColor: "#CECECE",
+        borderBottomColor: "#F0F0F0",
         borderBottomWidth: 2
+    },
+    overlay : {
+        flex:1,
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: 60,
+        justifyContent: "flex-start",
+        alignItems: "center",
+        backgroundColor: "rgba(255,255,255,0.7)"
+        },
+    popup : {
+        width: 400,
+        height: "80%",
+        backgroundColor: "white",
+        borderBottomRightRadius: 40,
+        borderBottomLeftRadius: 40,
+        paddingTop: 40,
     },
     searchbar : {
         flex:1, 
